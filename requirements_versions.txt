@@ -1,0 +1,132 @@
+Name: gradio
+Version: 5.23.1
+Summary: Python library for easily interacting with trained machine learning models
+Home-page: https://github.com/gradio-app/gradio
+Author: 
+Author-email: Abubakar Abid <gradio-team@huggingface.co>, Ali Abid <gradio-team@huggingface.co>, Ali Abdalla <gradio-team@huggingface.co>, Dawood Khan <gradio-team@huggingface.co>, Ahsen Khaliq <gradio-team@huggingface.co>, Pete Allen <gradio-team@huggingface.co>, Ömer Faruk Özdemir <gradio-team@huggingface.co>, Freddy A Boulton <gradio-team@huggingface.co>, Hannah Blair <gradio-team@huggingface.co>
+License-Expression: Apache-2.0
+Location: /usr/local/lib/python3.11/dist-packages
+Requires: aiofiles, anyio, fastapi, ffmpy, gradio-client, groovy, httpx, huggingface-hub, jinja2, markupsafe, numpy, orjson, packaging, pandas, pillow, pydantic, pydub, python-multipart, pyyaml, ruff, safehttpx, semantic-version, starlette, tomlkit, typer, typing-extensions, uvicorn
+Required-by: 
+---
+Name: basicsr
+Version: 1.4.2
+Summary: Open Source Image and Video Super-Resolution Toolbox
+Home-page: https://github.com/xinntao/BasicSR
+Author: Xintao Wang
+Author-email: xintao.wang@outlook.com
+License: Apache License 2.0
+Location: /usr/local/lib/python3.11/dist-packages
+Requires: addict, future, lmdb, numpy, opencv-python, Pillow, pyyaml, requests, scikit-image, scipy, tb-nightly, torch, torchvision, tqdm, yapf
+Required-by: 
+---
+Name: opencv-python
+Version: 4.11.0.86
+Summary: Wrapper package for OpenCV python bindings.
+Home-page: https://github.com/opencv/opencv-python
+Author: 
+Author-email: 
+License: Apache 2.0
+Location: /usr/local/lib/python3.11/dist-packages
+Requires: numpy
+Required-by: basicsr, dopamine_rl
+---
+Name: opencv-python-headless
+Version: 4.11.0.86
+Summary: Wrapper package for OpenCV python bindings.
+Home-page: https://github.com/opencv/opencv-python
+Author: 
+Author-email: 
+License: Apache 2.0
+Location: /usr/local/lib/python3.11/dist-packages
+Requires: numpy
+Required-by: albucore, albumentations
+---
+Name: einops
+Version: 0.8.1
+Summary: A new flavour of deep learning operations
+Home-page: https://github.com/arogozhnikov/einops
+Author: Alex Rogozhnikov
+Author-email: 
+License: MIT
+Location: /usr/local/lib/python3.11/dist-packages
+Requires: 
+Required-by: 
+---
+Name: torch
+Version: 2.6.0+cu124
+Summary: Tensors and Dynamic neural networks in Python with strong GPU acceleration
+Home-page: https://pytorch.org/
+Author: PyTorch Team
+Author-email: packages@pytorch.org
+License: BSD-3-Clause
+Location: /usr/local/lib/python3.11/dist-packages
+Requires: filelock, fsspec, jinja2, networkx, nvidia-cublas-cu12, nvidia-cuda-cupti-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-runtime-cu12, nvidia-cudnn-cu12, nvidia-cufft-cu12, nvidia-curand-cu12, nvidia-cusolver-cu12, nvidia-cusparse-cu12, nvidia-cusparselt-cu12, nvidia-nccl-cu12, nvidia-nvjitlink-cu12, nvidia-nvtx-cu12, sympy, triton, typing-extensions
+Required-by: accelerate, basicsr, fastai, peft, sentence-transformers, timm, torch_tensorrt, torchaudio, torchtext, torchvision
+---
+Name: torch_tensorrt
+Version: 2.6.0
+Summary: Torch-TensorRT is a package which allows users to automatically compile PyTorch and TorchScript modules to TensorRT while remaining in PyTorch
+Home-page: https://pytorch.org/tensorrt
+Author: 
+Author-email: NVIDIA Corporation <narens@nvidia.com>
+License: Copyright (c) 2020-present, NVIDIA CORPORATION. All rights reserved.
+Copyright (c) Meta Platforms, Inc. and affiliates.                
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:        
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.        
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.        
+3. Neither the name of the copyright holder nor the names of its contributors
+   may be used to endorse or promote products derived from this software
+   without specific prior written permission.        
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS ``AS IS'' AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.        
+Location: /usr/local/lib/python3.11/dist-packages
+Requires: numpy, packaging, tensorrt, tensorrt-cu12, tensorrt-cu12-bindings, tensorrt-cu12-libs, torch, typing-extensions
+Required-by: 
+---
+Name: torchtext
+Version: 0.18.0
+Summary: Text utilities, models, transforms, and datasets for PyTorch.
+Home-page: https://github.com/pytorch/text
+Author: PyTorch Text Team
+Author-email: packages@pytorch.org
+License: BSD
+Location: /usr/local/lib/python3.11/dist-packages
+Requires: numpy, requests, torch, tqdm
+Required-by: 
+---
+Name: torchvision
+Version: 0.21.0+cu124
+Summary: image and video datasets and models for torch deep learning
+Home-page: https://github.com/pytorch/vision
+Author: PyTorch Core Team
+Author-email: soumith@pytorch.org
+License: BSD
+Location: /usr/local/lib/python3.11/dist-packages
+Requires: numpy, pillow, torch
+Required-by: basicsr, fastai, timm
+---
+Name: torchaudio
+Version: 2.6.0+cu124
+Summary: An audio package for PyTorch
+Home-page: https://github.com/pytorch/audio
+Author: Soumith Chintala, David Pollack, Sean Naren, Peter Goldsborough, Moto Hira, Caroline Chen, Jeff Hwang, Zhaoheng Ni, Xiaohui Zhang
+Author-email: soumith@pytorch.org
+License: 
+Location: /usr/local/lib/python3.11/dist-packages
+Requires: torch
+Required-by: 
