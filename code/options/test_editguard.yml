@@ -38,8 +38,14 @@ datasets:
     name: AGE-Set
     mode: td
 
+    # Original data_path
     data_path: ../dataset/valAGE-Set
-    txt_path:  ../dataset/sep_testlist.txt
+
+    # Original txt_path
+    # txt_path:  ../dataset/sep_testlist.txt
+    txt_path:  ../dataset/sep_testlist-5-eles.txt
+    # txt_path:  ../dataset/sep_testlist-50-eles.txt
+    # txt_path:  ../dataset/sep_testlist-100-eles.txt
 
     N_frames: 1
     padding: 'new_info'
