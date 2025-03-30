@@ -8,3 +8,4 @@ torch-tensorrt
 torchtext
 torchvision
 torchaudio
+pyyaml

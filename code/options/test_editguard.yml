@@ -35,6 +35,7 @@ mode: image
 datasets:
   TD:
     num_image: 1
+    image_size: 512
     name: AGE-Set
     mode: td
 

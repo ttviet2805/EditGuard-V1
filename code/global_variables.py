@@ -1,5 +1,14 @@
 # ----- VN START -----
 RESULT_FILE = "ori_result.txt"
+TEST_CONFIG_FILE = "code/test_editguard.yml"
+
+import yaml
+def load_config(path=TEST_CONFIG_FILE):
+    with open(path, 'r', encoding='utf-8') as file:
+        return yaml.safe_load(file)
+
+# Global configuration variable
+TEST_CONFIG = load_config()
 
 class ImageResult:
     def __init__(self, image_id, ori_message, rec_message, bit_errors):
