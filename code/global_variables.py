@@ -1,3 +1,4 @@
+# ----- VN START -----
 RESULT_FILE = "ori_result.txt"
 
 class ImageResult:
@@ -73,11 +74,10 @@ class ImageResult:
         with open(filename, "a") as file:
             file.write(self.to_pretty_string() + "\n")
 
-    def append_content_to_file(self, content, filename=RESULT_FILE):
-        """Append any arbitrary string content to the specified file."""
-        with open(filename, "a") as file:
-            file.write(content + "\n")
-
+def append_content_to_file(content, filename=RESULT_FILE):
+    """Append any arbitrary string content to the specified file."""
+    with open(filename, "a") as file:
+        file.write(content + "\n")
 
 # Example usage:
 if __name__ == "__main__":
@@ -99,3 +99,4 @@ if __name__ == "__main__":
 
     # Append the result to the file.
     result.append_to_file("result.txt")
+# ----- VN END -----

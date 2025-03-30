@@ -15,6 +15,9 @@ from data import create_dataloader, create_dataset
 from models import create_model
 import numpy as np
 
+# ----- VN START -----
+import global_variables
+# ----- VN END -----
 
 def init_dist(backend='nccl', **kwargs):
     ''' initialization for distributed training'''
@@ -131,6 +134,16 @@ def main():
         print(bitrecord)
         biterr.append(bitrecord)
 
+        # ----- VN START -----
+        curImageResult = global_variables.ImageResult(
+            image_id=image_id,
+            ori_message=util.tensor_to_bitstring(a),
+            rec_message=util.tensor_to_bitstring(b),
+            bit_errors=bitrecord
+        )
+        curImageResult.append_to_file()
+        # ----- VN END -----
+
         for i in range(t_step):
 
             sr_img = util.tensor2img(visuals['SR'][i])  # uint8
@@ -183,6 +196,10 @@ def main():
         res_psnr_h+=('_{:.4e}'.format(p))
     print('# Validation # PSNR_Cover: {:.4e}, PSNR_Secret: {:s}, PSNR_Stego: {:.4e},  Bit_Error: {:.4e}'.format(avg_psnr, res_psnr_h, avg_psnr_lr, avg_biterr))
 
+    # ----- VN START -----
+    avg_result = '\n\n# Validation # PSNR_Cover: {:.4e}, PSNR_Secret: {:s}, PSNR_Stego: {:.4e},  Bit_Error: {:.4e}'.format(avg_psnr, res_psnr_h, avg_psnr_lr, avg_biterr)
+    global_variables.append_content_to_file(content=avg_result)
+    # ----- VN END -----
 
 if __name__ == '__main__':
     main()
