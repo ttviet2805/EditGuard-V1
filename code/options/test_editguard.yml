@@ -30,6 +30,12 @@ bitrecord: False
 
 mode: image
 
+
+#### results
+
+result_path: "results/ori_result.txt"
+
+
 #### datasets
 
 datasets:

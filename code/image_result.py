@@ -1,5 +1,21 @@
 # ----- VN START -----
-RESULT_FILE = "ori_result.txt"
+import os
+import global_variables
+
+RESULT_FILE = global_variables.TEST_CONFIG['result_path']
+
+def ensure_directory_exists(filename):
+    """Ensure the directory for the given file exists; create it if not."""
+    directory = os.path.dirname(filename)
+    if directory and not os.path.exists(directory):
+        os.makedirs(directory, exist_ok=True)
+
+def append_content_to_file(content, filename=RESULT_FILE):
+    """Append any arbitrary string content to the specified file."""
+    ensure_directory_exists(filename)
+    
+    with open(filename, "a") as file:
+        file.write(content + "\n")
 
 class ImageResult:
     def __init__(self, image_id, ori_message, rec_message, bit_errors):
@@ -66,18 +82,17 @@ class ImageResult:
 
     def write_to_file(self, filename=RESULT_FILE):
         """Write the pretty formatted result to the specified file, overwriting any existing content."""
+        ensure_directory_exists(filename)
+
         with open(filename, "w") as file:
             file.write(self.to_pretty_string() + "\n")
 
     def append_to_file(self, filename=RESULT_FILE):
         """Append the pretty formatted result to the specified file."""
+        ensure_directory_exists(filename)
+
         with open(filename, "a") as file:
             file.write(self.to_pretty_string() + "\n")
-
-def append_content_to_file(content, filename=RESULT_FILE):
-    """Append any arbitrary string content to the specified file."""
-    with open(filename, "a") as file:
-        file.write(content + "\n")
 
 # Example usage:
 if __name__ == "__main__":
