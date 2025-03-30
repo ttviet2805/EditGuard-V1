@@ -17,6 +17,7 @@ import numpy as np
 
 # ----- VN START -----
 import global_variables
+import image_result
 # ----- VN END -----
 
 def init_dist(backend='nccl', **kwargs):
@@ -135,7 +136,7 @@ def main():
         biterr.append(bitrecord)
 
         # ----- VN START -----
-        curImageResult = global_variables.ImageResult(
+        curImageResult = image_result.ImageResult(
             image_id=image_id,
             ori_message=util.tensor_to_bitstring(a),
             rec_message=util.tensor_to_bitstring(b),
@@ -198,7 +199,7 @@ def main():
 
     # ----- VN START -----
     avg_result = '\n\n# Validation # PSNR_Cover: {:.4e}, PSNR_Secret: {:s}, PSNR_Stego: {:.4e},  Bit_Error: {:.4e}'.format(avg_psnr, res_psnr_h, avg_psnr_lr, avg_biterr)
-    global_variables.append_content_to_file(content=avg_result)
+    image_result.append_content_to_file(content=avg_result)
     # ----- VN END -----
 
 if __name__ == '__main__':
