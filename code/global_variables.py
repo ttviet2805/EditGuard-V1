@@ -1,6 +1,6 @@
 # ----- VN START -----
 RESULT_FILE = "ori_result.txt"
-TEST_CONFIG_FILE = "code/test_editguard.yml"
+TEST_CONFIG_FILE = "options/test_editguard.yml"
 
 import yaml
 def load_config(path=TEST_CONFIG_FILE):
