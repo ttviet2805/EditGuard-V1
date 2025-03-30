@@ -269,3 +269,15 @@ def decoded_message_error_rate_batch(messages, decoded_messages):
         error_rate += decoded_message_error_rate(messages[i], decoded_messages[i])
     error_rate /= batch_size
     return error_rate
+
+def tensor_to_bitstring(tensor: torch.Tensor) -> str:
+    """
+    Converts a PyTorch tensor of 0s and 1s to a bitstring.
+    
+    Args:
+        tensor (torch.Tensor): A tensor containing float/int values (typically 0.0 or 1.0).
+    
+    Returns:
+        str: A string of 0s and 1s representing the tensor.
+    """
+    return ''.join(str(int(x)) for x in tensor.flatten().cpu())
