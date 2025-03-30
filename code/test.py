@@ -137,7 +137,7 @@ def main():
 
         # ----- VN START -----
         curImageResult = image_result.ImageResult(
-            image_id=image_id,
+            image_id=image_id + 1,
             ori_message=util.tensor_to_bitstring(a),
             rec_message=util.tensor_to_bitstring(b),
             bit_errors=bitrecord
