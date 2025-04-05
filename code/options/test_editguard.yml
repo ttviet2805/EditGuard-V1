@@ -30,11 +30,11 @@ bitrecord: False
 
 mode: image
 
-
+# ----- VN START -----
 #### results
 
 result_path: "results/ori_result.txt"
-
+# ----- VN END -----
 
 #### datasets
 
@@ -45,14 +45,19 @@ datasets:
     name: AGE-Set
     mode: td
 
-    # Original data_path
+    # ----- VN START -----
+    # data_path: ../dataset/valAGE-Set...
+    # ----- ORIGINAL -----
     data_path: ../dataset/valAGE-Set
+    # ----- VN END -----
 
-    # Original txt_path
-    # txt_path:  ../dataset/sep_testlist.txt
+    # ----- VN START -----
     txt_path:  ../dataset/sep_testlist-5-eles.txt
     # txt_path:  ../dataset/sep_testlist-50-eles.txt
     # txt_path:  ../dataset/sep_testlist-100-eles.txt
+    # ----- ORIGINAL -----
+    # txt_path:  ../dataset/sep_testlist.txt
+    # ----- VN END -----
 
     N_frames: 1
     padding: 'new_info'

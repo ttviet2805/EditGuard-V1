@@ -400,7 +400,7 @@ class Model_VSN(BaseModel):
                     # ----- VN START -----
                     image_size = global_variables.TEST_CONFIG['datasets']['TD']['image_size']
                     mask_image = mask_image.resize((image_size, image_size))
-                    ## ----- ORIGINAL -----
+                    # ----- ORIGINAL -----
                     # mask_image = mask_image.resize((512, 512))
                     # ----- VN END -----
                     h, w = mask_image.size
