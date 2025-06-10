@@ -374,6 +374,10 @@ class Model_VSN(BaseModel):
                 with open(file_name, "a") as file:
                     file.write(bit_string + "\n")
 
+            # ----- VN START -----
+            start_embed = time.perf_counter()
+            # ----- VN END -----
+
             if self.opt['hide']:
                 self.output, container = self.netG(x=dwt(self.host.reshape(b, -1, h, w)), x_h=self.secret, message=message)
                 y_forw = container
@@ -382,6 +386,11 @@ class Model_VSN(BaseModel):
                 message = torch.tensor(self.msg_list[image_id]).unsqueeze(0).cuda()
                 self.output = self.host
                 y_forw = self.output.squeeze(1)
+
+            # ----- VN START -----
+            end_embed = time.perf_counter() - start_embed
+            print(f"Embed time: {end_embed:.2f} seconds")
+            # ----- VN END -----
 
             if add_sdinpaint:
                 import random
@@ -587,8 +596,16 @@ class Model_VSN(BaseModel):
             else:
                 y = y_forw
 
+            # ----- VN START -----
+            start_extract = time.perf_counter()
+            # ----- VN END -----
+
             if self.mode == "image":
                 out_x, out_x_h, out_z, recmessage = self.netG(x=y, rev=True)
+                # ----- VN START -----
+                end_extract = time.perf_counter() - start_extract
+                print(f"Extract time: {end_extract:.2f} seconds")
+                # ----- VN END -----
                 out_x = iwt(out_x)
 
                 out_x_h = [iwt(out_x_h_i) for out_x_h_i in out_x_h]
@@ -604,6 +621,10 @@ class Model_VSN(BaseModel):
             
             elif self.mode == "bit":
                 recmessage = self.netG(x=y, rev=True)
+                # ----- VN START -----
+                end_extract = time.perf_counter() - start_extract
+                print(f"Extract time: {end_extract:.2f} seconds")
+                # ----- VN END -----
                 forw_L.append(y_forw)
                 recmsglist.append(recmessage)
                 msglist.append(message)
