@@ -57,7 +57,7 @@ class CoCoDataset(data.Dataset):
         # ----- VN START -----
         img_GT = util.read_img(None, path_frame)
         # ----- ORIGINAL -----
-        img_GT = util.read_img(None, osp.join(path_frame, path_frame))
+        # img_GT = util.read_img(None, osp.join(path_frame, path_frame))
         # ----- VN END -----
         index_h = random.randint(0, len(self.list_image) - 1)
 
@@ -80,7 +80,7 @@ class CoCoDataset(data.Dataset):
         # ----- VN START -----
         frame_h = util.read_img(None, path_frame_h)
         # ----- ORIGINAL -----
-        frame_h = util.read_img(None, osp.join(path_frame_h, path_frame_h))
+        # frame_h = util.read_img(None, osp.join(path_frame_h, path_frame_h))
         # ------ VN END -----
         H1, W1, C1 = frame_h.shape
         rnd_h = random.randint(0, max(0, H1 - GT_size))
