@@ -16,7 +16,8 @@ addjpeg: False
 jpegfactor: 70
 addpossion: False
 # ---- VN START -----
-addblur: True
+addblur: False
+addcolorjitter: False
 # ----- VN END -----
 sdinpaint: False
 controlnetinpaint: False

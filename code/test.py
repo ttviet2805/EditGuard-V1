@@ -116,6 +116,7 @@ def main():
     biterr = []
     idx = 0
     for image_id, val_data in enumerate(val_loader):
+        print("\n========== Image ID: " + str(image_id + 1) + " ==========")
         img_dir = os.path.join('results',opt['name'])
         util.mkdir(img_dir)
 
@@ -132,7 +133,9 @@ def main():
         b = visuals['message'][0]
 
         bitrecord = util.decoded_message_error_rate_batch(a, b)
-        print(bitrecord)
+        # ----- VN START -----
+        print("BA: " + str(bitrecord))
+        # ----- VN END -----
         biterr.append(bitrecord)
 
         # ----- VN START -----
@@ -195,6 +198,8 @@ def main():
     res_psnr_h = ''
     for p in avg_psnr_h:
         res_psnr_h+=('_{:.4e}'.format(p))
+    
+    print("\n========== Overall Results =========")
     print('# Validation # PSNR_Cover: {:.4e}, PSNR_Secret: {:s}, PSNR_Stego: {:.4e},  Bit_Error: {:.4e}'.format(avg_psnr, res_psnr_h, avg_psnr_lr, avg_biterr))
 
     # ----- VN START -----

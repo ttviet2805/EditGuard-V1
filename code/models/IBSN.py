@@ -4,7 +4,11 @@ from collections import OrderedDict
 import torch
 import torch.nn as nn
 from torch.nn.parallel import DataParallel, DistributedDataParallel
+
+# ----- VN START -----
 from kornia.filters import MotionBlur
+import torchvision.transforms as T
+# ----- VN END -----
 
 import models.networks as networks
 import models.lr_scheduler as lr_scheduler
@@ -332,7 +336,10 @@ class Model_VSN(BaseModel):
         add_noise = self.opt['addnoise']
         add_jpeg = self.opt['addjpeg']
         add_possion = self.opt['addpossion']
+        # ----- VN START -----
         add_blur = self.opt['addblur']
+        add_color_jitter = self.opt['addcolorjitter']
+        # ----- VN END -----
         add_sdinpaint = self.opt['sdinpaint']
         add_controlnet = self.opt['controlnetinpaint']
         add_sdxl = self.opt['sdxl']
@@ -603,6 +610,14 @@ class Model_VSN(BaseModel):
 
                     # Apply motion blur
                     y_forw = motion_blur(y_forw)
+                elif add_color_jitter:
+                    print("Adding color jitter...")
+                    jitter = T.ColorJitter(0.3, 0.3, 0.3, 0.1)
+                    # Apply per image in batch
+                    y_forw = torch.stack([
+                        T.ToTensor()(jitter(T.ToPILImage()(img.cpu())))
+                        for img in y_forw
+                    ]).to(y_forw.device)
                                         
 
             # backward upscaling
