@@ -15,7 +15,10 @@ noisesigma: 1
 addjpeg: False
 jpegfactor: 70
 addpossion: False
-sdinpaint: True
+# ---- VN START -----
+addblur: True
+# ----- VN END -----
+sdinpaint: False
 controlnetinpaint: False
 sdxl: False
 repaint: False

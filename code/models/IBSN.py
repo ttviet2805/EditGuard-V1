@@ -4,6 +4,7 @@ from collections import OrderedDict
 import torch
 import torch.nn as nn
 from torch.nn.parallel import DataParallel, DistributedDataParallel
+from kornia.filters import MotionBlur
 
 import models.networks as networks
 import models.lr_scheduler as lr_scheduler
@@ -201,6 +202,7 @@ class Model_VSN(BaseModel):
         add_noise = self.opt['addnoise']
         add_jpeg = self.opt['addjpeg']
         add_possion = self.opt['addpossion']
+        add_blur = self.opt['addblur']
         add_sdinpaint = self.opt['sdinpaint']
         degrade_shuffle = self.opt['degrade_shuffle']
 
@@ -330,6 +332,7 @@ class Model_VSN(BaseModel):
         add_noise = self.opt['addnoise']
         add_jpeg = self.opt['addjpeg']
         add_possion = self.opt['addpossion']
+        add_blur = self.opt['addblur']
         add_sdinpaint = self.opt['sdinpaint']
         add_controlnet = self.opt['controlnetinpaint']
         add_sdxl = self.opt['sdxl']
@@ -589,6 +592,18 @@ class Model_VSN(BaseModel):
                         noisy_img_tensor = y_forw + (noisy_gray_tensor - img_gray_tensor)
 
                     y_forw = torch.clamp(noisy_img_tensor, 0, 1)
+                elif add_blur:
+                    print("Adding motion blur...")
+                    device = y_forw.device
+                    motion_blur = MotionBlur(
+                        kernel_size=9,  # must be int
+                        angle=torch.tensor([45.0], device=y_forw.device),
+                        direction=torch.tensor([0.0], device=y_forw.device)
+                    )
+
+                    # Apply motion blur
+                    y_forw = motion_blur(y_forw)
+                                        
 
             # backward upscaling
             if self.opt['hide']:

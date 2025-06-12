@@ -9,3 +9,4 @@ torchtext
 torchvision
 torchaudio
 pyyaml
+kornia
