@@ -20,6 +20,23 @@ import global_variables
 import image_result
 # ----- VN END -----
 
+# ----- VN START -----
+import sys
+import logging
+
+# Open the file with UTF-8 encoding to support emojis and Unicode
+logfile = open("test_console.log", "w", encoding="utf-8")
+
+sys.stdout = logfile
+sys.stderr = logfile
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    stream=logfile
+)
+# ----- VN END -----
+
 def init_dist(backend='nccl', **kwargs):
     ''' initialization for distributed training'''
     # if mp.get_start_method(allow_none=True) is None:
