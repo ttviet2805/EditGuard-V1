@@ -44,8 +44,8 @@ datasets:
     random_reverse: false
     border_mode: false
     # ----- VN START -----
-    data_path: ../dataset/COCO-2017
-    txt_path: ../dataset/COCO-2017.txt
+    data_path: ../../COCO-5000-images
+    txt_path: ../dataset/sep_testlist-5000-eles.txt
     # ----- ORIGINAL -----
     # data_path: /userhome/train2017
     # txt_path: /userhome/train2017.txt
@@ -106,7 +106,7 @@ train:
   lr_G: !!float 1e-4
   beta1: 0.9
   beta2: 0.5
-  niter: 250000
+  niter: 12500
   warmup_iter: -1  # no warm up
 
   lr_scheme: MultiStepLR
@@ -134,5 +134,5 @@ train:
 #### logger
 
 logger:
-  print_freq: 100
+  print_freq: 1000
   save_checkpoint_freq: !!float 500

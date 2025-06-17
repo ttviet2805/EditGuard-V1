@@ -3,10 +3,10 @@ import os
 from pathlib import Path
 
 # Thư mục cần liệt kê
-DIR = Path('COCO-2017-1000-images')
+DIR = Path(f'../COCO-5000-images')
 
 # File đầu ra
-OUTPUT = DIR / 'COCO-2017-1000-images.txt'
+OUTPUT = DIR / 'sep_testlist-5000-eles.txt'
 
 def main():
     # Lấy danh sách file, chỉ file (không tính thư mục con), sắp xếp tên

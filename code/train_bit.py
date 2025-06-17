@@ -155,10 +155,11 @@ def main():
     # training
     logger.info('Start training from epoch: {:d}, iter: {:d}'.format(start_epoch, current_step))
     for epoch in range(start_epoch, total_epochs + 1):
-        print('========== Epoch: ' + str(epoch) + " ==========")
+        print('========== Epoch: ' + str(epoch) + " / " + str(total_epochs) + " ==========")
         if opt['dist']:
             train_sampler.set_epoch(epoch)
         for _, train_data in enumerate(train_loader):
+            print('========== Current_Step: ' + str(current_step) + " of epoch " + str(epoch) + " ==========")
             current_step += 1
             if current_step > total_iters:
                 break
