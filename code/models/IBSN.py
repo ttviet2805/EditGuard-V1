@@ -223,7 +223,11 @@ class Model_VSN(BaseModel):
 
         if degrade_shuffle:
             import random
+            # ----- VN START -----
+            # choice = random.randint(0, 3)
+            # ----- ORIGINAL -----
             choice = random.randint(0, 2)
+            # ----- VN END -----
             
             if choice == 0:
                 NL = float((np.random.randint(1, 16))/255)
@@ -246,6 +250,11 @@ class Model_VSN(BaseModel):
                     noisy_img_tensor = y_forw + (noisy_gray_tensor - img_gray_tensor)
 
                 y_forw = torch.clamp(noisy_img_tensor, 0, 1)
+            # ----- VN START -----
+            elif choice == 3:
+                # Default: kernel size = 9,  angle=torch.tensor([45.0], device=y_forw.device), direction=torch.tensor([0.0], device=y_forw.device)
+                y_forw = random_motion_blur(y_forw)
+            # ----- VN END -----
 
         else:
 
@@ -270,6 +279,11 @@ class Model_VSN(BaseModel):
                     noisy_img_tensor = y_forw + (noisy_gray_tensor - img_gray_tensor)
 
                 y_forw = torch.clamp(noisy_img_tensor, 0, 1)
+            # ----- VN START -----
+            elif add_blur:
+                # Default: kernel size = 9,  angle=torch.tensor([45.0], device=y_forw.device), direction=torch.tensor([0.0], device=y_forw.device)
+                y_forw = random_motion_blur(y_forw)
+            # ----- VN END -----
 
         y = self.Quantization(y_forw)
         all_zero = torch.zeros(message.shape).to(self.device)
@@ -552,7 +566,11 @@ class Model_VSN(BaseModel):
 
             if degrade_shuffle:
                 import random
+                # ----- VN START -----
+                # choice = random.randint(0, 3)
+                # ----- ORIGINAL -----
                 choice = random.randint(0, 2)
+                # ----- VN END -----
                 
                 if choice == 0:
                     NL = float((np.random.randint(1,5))/255)
@@ -575,6 +593,11 @@ class Model_VSN(BaseModel):
                         noisy_img_tensor = y_forw + (noisy_gray_tensor - img_gray_tensor)
 
                     y_forw = torch.clamp(noisy_img_tensor, 0, 1)
+                # ----- VN START -----
+                elif choice == 3:
+                    # Default: kernel size = 9,  angle=torch.tensor([45.0], device=y_forw.device), direction=torch.tensor([0.0], device=y_forw.device)
+                    y_forw = random_motion_blur(y_forw)
+                # ----- VN END -----
 
             else:
 
@@ -599,6 +622,7 @@ class Model_VSN(BaseModel):
                         noisy_img_tensor = y_forw + (noisy_gray_tensor - img_gray_tensor)
 
                     y_forw = torch.clamp(noisy_img_tensor, 0, 1)
+                # ----- VN START -----
                 elif add_blur:
                     # Default: kernel size = 9,  angle=torch.tensor([45.0], device=y_forw.device), direction=torch.tensor([0.0], device=y_forw.device)
                     y_forw = random_motion_blur(y_forw)
@@ -611,6 +635,7 @@ class Model_VSN(BaseModel):
                         T.ToTensor()(jitter(T.ToPILImage()(img.cpu())))
                         for img in y_forw
                     ]).to(y_forw.device)
+                # ----- VN END -----
                                         
 
             # backward upscaling
