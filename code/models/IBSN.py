@@ -6,7 +6,7 @@ import torch.nn as nn
 from torch.nn.parallel import DataParallel, DistributedDataParallel
 
 # ----- VN START -----
-from kornia.filters import MotionBlur
+from utils.motion_blur import random_motion_blur
 import torchvision.transforms as T
 # ----- VN END -----
 
@@ -600,16 +600,9 @@ class Model_VSN(BaseModel):
 
                     y_forw = torch.clamp(noisy_img_tensor, 0, 1)
                 elif add_blur:
-                    print("Adding motion blur...")
-                    device = y_forw.device
-                    motion_blur = MotionBlur(
-                        kernel_size=9,  # must be int
-                        angle=torch.tensor([45.0], device=y_forw.device),
-                        direction=torch.tensor([0.0], device=y_forw.device)
-                    )
+                    # Default: kernel size = 9,  angle=torch.tensor([45.0], device=y_forw.device), direction=torch.tensor([0.0], device=y_forw.device)
+                    y_forw = random_motion_blur(y_forw)
 
-                    # Apply motion blur
-                    y_forw = motion_blur(y_forw)
                 elif add_color_jitter:
                     print("Adding color jitter...")
                     jitter = T.ColorJitter(0.3, 0.3, 0.3, 0.1)
