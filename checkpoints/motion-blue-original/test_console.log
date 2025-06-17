@@ -1,0 +1,7307 @@
+export CUDA_VISIBLE_DEVICES=0
+Disabled distributed training.
+phase TD
+td
+2025-06-17 11:59:27,910 - INFO - Dataset [imageTestDataset - AGE-Set] is created.
+SEAttention
+SEAttention
+SEAttention
+SEAttention
+SEAttention
+SEAttention
+SEAttention
+SEAttention
+SEAttention
+SEAttention
+SEAttention
+SEAttention
+SEAttention
+SEAttention
+SEAttention
+SEAttention
+2025-06-17 11:59:29,180 - INFO - Network G structure: DataParallel - VSN, with parameters: 9,326,763
+2025-06-17 11:59:29,180 - INFO - VSN(
+  (bitencoder): DW_Encoder(
+    (conv1): ConvBlock(
+      (layers): Sequential(
+        (0): ConvINRelu(
+          (layers): Sequential(
+            (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+          )
+        )
+        (1): ConvINRelu(
+          (layers): Sequential(
+            (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+          )
+        )
+      )
+    )
+    (down1): Down(
+      (layer): Sequential(
+        (0): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+                (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+        (1): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+            (1): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+      )
+    )
+    (down2): Down(
+      (layer): Sequential(
+        (0): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+                (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+        (1): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+            (1): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+      )
+    )
+    (down3): Down(
+      (layer): Sequential(
+        (0): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+                (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+        (1): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+            (1): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+      )
+    )
+    (down4): Down(
+      (layer): Sequential(
+        (0): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+                (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+        (1): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+            (1): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+      )
+    )
+    (up3): UP(
+      (conv): ConvBlock(
+        (layers): Sequential(
+          (0): ConvINRelu(
+            (layers): Sequential(
+              (0): Conv2d(256, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+              (2): ReLU(inplace=True)
+            )
+          )
+        )
+      )
+    )
+    (linear3): Linear(in_features=64, out_features=4096, bias=True)
+    (Conv_message3): ConvBlock(
+      (layers): Sequential(
+        (0): ConvINRelu(
+          (layers): Sequential(
+            (0): Conv2d(1, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+          )
+        )
+        (1): ConvINRelu(
+          (layers): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+          )
+        )
+      )
+    )
+    (att3): ResBlock(
+      (layers): Sequential(
+        (0): BottleneckBlock(
+          (change): Sequential(
+            (0): Conv2d(320, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (left): Sequential(
+            (0): Conv2d(320, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(128, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(16, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+        (1): BottleneckBlock(
+          (left): Sequential(
+            (0): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(128, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(16, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+      )
+    )
+    (up2): UP(
+      (conv): ConvBlock(
+        (layers): Sequential(
+          (0): ConvINRelu(
+            (layers): Sequential(
+              (0): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+              (2): ReLU(inplace=True)
+            )
+          )
+        )
+      )
+    )
+    (linear2): Linear(in_features=64, out_features=4096, bias=True)
+    (Conv_message2): ConvBlock(
+      (layers): Sequential(
+        (0): ConvINRelu(
+          (layers): Sequential(
+            (0): Conv2d(1, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+          )
+        )
+        (1): ConvINRelu(
+          (layers): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+          )
+        )
+      )
+    )
+    (att2): ResBlock(
+      (layers): Sequential(
+        (0): BottleneckBlock(
+          (change): Sequential(
+            (0): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (left): Sequential(
+            (0): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(64, 8, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(8, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+        (1): BottleneckBlock(
+          (left): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(64, 8, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(8, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+      )
+    )
+    (up1): UP(
+      (conv): ConvBlock(
+        (layers): Sequential(
+          (0): ConvINRelu(
+            (layers): Sequential(
+              (0): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+              (2): ReLU(inplace=True)
+            )
+          )
+        )
+      )
+    )
+    (linear1): Linear(in_features=64, out_features=4096, bias=True)
+    (Conv_message1): ConvBlock(
+      (layers): Sequential(
+        (0): ConvINRelu(
+          (layers): Sequential(
+            (0): Conv2d(1, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+          )
+        )
+        (1): ConvINRelu(
+          (layers): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+          )
+        )
+      )
+    )
+    (att1): ResBlock(
+      (layers): Sequential(
+        (0): BottleneckBlock(
+          (change): Sequential(
+            (0): Conv2d(128, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (left): Sequential(
+            (0): Conv2d(128, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+        (1): BottleneckBlock(
+          (left): Sequential(
+            (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+      )
+    )
+    (up0): UP(
+      (conv): ConvBlock(
+        (layers): Sequential(
+          (0): ConvINRelu(
+            (layers): Sequential(
+              (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+              (2): ReLU(inplace=True)
+            )
+          )
+        )
+      )
+    )
+    (linear0): Linear(in_features=64, out_features=4096, bias=True)
+    (Conv_message0): ConvBlock(
+      (layers): Sequential(
+        (0): ConvINRelu(
+          (layers): Sequential(
+            (0): Conv2d(1, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+          )
+        )
+        (1): ConvINRelu(
+          (layers): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+          )
+        )
+      )
+    )
+    (att0): ResBlock(
+      (layers): Sequential(
+        (0): BottleneckBlock(
+          (change): Sequential(
+            (0): Conv2d(96, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (left): Sequential(
+            (0): Conv2d(96, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(16, 2, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(2, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+        (1): BottleneckBlock(
+          (left): Sequential(
+            (0): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(16, 2, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(2, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+      )
+    )
+    (Conv_1x1): Conv2d(19, 3, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (bitdecoder): DW_Decoder(
+    (conv1): ConvBlock(
+      (layers): Sequential(
+        (0): ConvINRelu(
+          (layers): Sequential(
+            (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+          )
+        )
+        (1): ConvINRelu(
+          (layers): Sequential(
+            (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+          )
+        )
+      )
+    )
+    (down1): Down(
+      (layer): Sequential(
+        (0): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+                (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+        (1): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+            (1): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+      )
+    )
+    (down2): Down(
+      (layer): Sequential(
+        (0): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+                (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+        (1): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+            (1): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+      )
+    )
+    (down3): Down(
+      (layer): Sequential(
+        (0): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+                (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+        (1): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+            (1): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+      )
+    )
+    (down4): Down(
+      (layer): Sequential(
+        (0): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+                (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+        (1): ConvBlock(
+          (layers): Sequential(
+            (0): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+            (1): ConvINRelu(
+              (layers): Sequential(
+                (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+                (2): ReLU(inplace=True)
+              )
+            )
+          )
+        )
+      )
+    )
+    (up3): UP(
+      (conv): ConvBlock(
+        (layers): Sequential(
+          (0): ConvINRelu(
+            (layers): Sequential(
+              (0): Conv2d(256, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+              (2): ReLU(inplace=True)
+            )
+          )
+        )
+      )
+    )
+    (att3): ResBlock(
+      (layers): Sequential(
+        (0): BottleneckBlock(
+          (change): Sequential(
+            (0): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (left): Sequential(
+            (0): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(128, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(16, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+        (1): BottleneckBlock(
+          (left): Sequential(
+            (0): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(128, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(16, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+      )
+    )
+    (up2): UP(
+      (conv): ConvBlock(
+        (layers): Sequential(
+          (0): ConvINRelu(
+            (layers): Sequential(
+              (0): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+              (2): ReLU(inplace=True)
+            )
+          )
+        )
+      )
+    )
+    (att2): ResBlock(
+      (layers): Sequential(
+        (0): BottleneckBlock(
+          (change): Sequential(
+            (0): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (left): Sequential(
+            (0): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(64, 8, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(8, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+        (1): BottleneckBlock(
+          (left): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(64, 8, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(8, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+      )
+    )
+    (up1): UP(
+      (conv): ConvBlock(
+        (layers): Sequential(
+          (0): ConvINRelu(
+            (layers): Sequential(
+              (0): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+              (2): ReLU(inplace=True)
+            )
+          )
+        )
+      )
+    )
+    (att1): ResBlock(
+      (layers): Sequential(
+        (0): BottleneckBlock(
+          (change): Sequential(
+            (0): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (left): Sequential(
+            (0): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+        (1): BottleneckBlock(
+          (left): Sequential(
+            (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+      )
+    )
+    (up0): UP(
+      (conv): ConvBlock(
+        (layers): Sequential(
+          (0): ConvINRelu(
+            (layers): Sequential(
+              (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+              (2): ReLU(inplace=True)
+            )
+          )
+        )
+      )
+    )
+    (att0): ResBlock(
+      (layers): Sequential(
+        (0): BottleneckBlock(
+          (change): Sequential(
+            (0): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (left): Sequential(
+            (0): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(16, 2, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(2, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+        (1): BottleneckBlock(
+          (left): Sequential(
+            (0): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (2): ReLU(inplace=True)
+            (3): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (4): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+            (5): ReLU(inplace=True)
+            (6): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): InstanceNorm2d(16, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+          (attention): SEAttention(
+            (se): Sequential(
+              (0): AdaptiveAvgPool2d(output_size=(1, 1))
+              (1): Conv2d(16, 2, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(2, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (4): Sigmoid()
+            )
+          )
+        )
+      )
+    )
+    (Conv_1x1): Conv2d(16, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (message_layer): Linear(in_features=4096, out_features=64, bias=True)
+  )
+  (irn): InvNN(
+    (operations): ModuleList(
+      (0-11): 12 x InvBlock(
+        (F): DenseBlock(
+          (conv1): Conv2d(12, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv2): Conv2d(44, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv3): Conv2d(76, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv4): Conv2d(108, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv5): Conv2d(140, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (NF): NAFBlock(
+          (conv1): Conv2d(12, 24, kernel_size=(1, 1), stride=(1, 1))
+          (conv2): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=24)
+          (conv3): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+          (sca): Sequential(
+            (0): AdaptiveAvgPool2d(output_size=1)
+            (1): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (sg): SimpleGate()
+          (conv4): Conv2d(12, 24, kernel_size=(1, 1), stride=(1, 1))
+          (conv5): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+          (norm1): LayerNorm2d()
+          (norm2): LayerNorm2d()
+          (dropout1): Identity()
+          (dropout2): Identity()
+        )
+        (G): DenseBlock(
+          (conv1): Conv2d(12, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv2): Conv2d(44, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv3): Conv2d(76, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv4): Conv2d(108, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv5): Conv2d(140, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (NG): NAFBlock(
+          (conv1): Conv2d(12, 24, kernel_size=(1, 1), stride=(1, 1))
+          (conv2): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=24)
+          (conv3): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+          (sca): Sequential(
+            (0): AdaptiveAvgPool2d(output_size=1)
+            (1): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (sg): SimpleGate()
+          (conv4): Conv2d(12, 24, kernel_size=(1, 1), stride=(1, 1))
+          (conv5): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+          (norm1): LayerNorm2d()
+          (norm2): LayerNorm2d()
+          (dropout1): Identity()
+          (dropout2): Identity()
+        )
+        (H): DenseBlock(
+          (conv1): Conv2d(12, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv2): Conv2d(44, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv3): Conv2d(76, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv4): Conv2d(108, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv5): Conv2d(140, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (NH): NAFBlock(
+          (conv1): Conv2d(12, 24, kernel_size=(1, 1), stride=(1, 1))
+          (conv2): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=24)
+          (conv3): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+          (sca): Sequential(
+            (0): AdaptiveAvgPool2d(output_size=1)
+            (1): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (sg): SimpleGate()
+          (conv4): Conv2d(12, 24, kernel_size=(1, 1), stride=(1, 1))
+          (conv5): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+          (norm1): LayerNorm2d()
+          (norm2): LayerNorm2d()
+          (dropout1): Identity()
+          (dropout2): Identity()
+        )
+      )
+    )
+  )
+  (pm): PredictiveModuleMIMO_prompt(
+    (conv_in): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (res_block): Sequential(
+      (0): ResidualBlockNoBN(
+        (conv1): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): ResidualBlockNoBN(
+        (conv1): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (2): ResidualBlockNoBN(
+        (conv1): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (3): ResidualBlockNoBN(
+        (conv1): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (4): ResidualBlockNoBN(
+        (conv1): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (5): ResidualBlockNoBN(
+        (conv1): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (6): ResidualBlockNoBN(
+        (conv1): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (7): ResidualBlockNoBN(
+        (conv1): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (transformer_block): Sequential(
+      (0): TransformerBlock(
+        (norm1): LayerNorm(
+          (body): WithBias_LayerNorm()
+        )
+        (attn): Attention(
+          (qkv): Conv2d(12, 36, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (qkv_dwconv): Conv2d(36, 36, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=36, bias=False)
+          (project_out): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (norm2): LayerNorm(
+          (body): WithBias_LayerNorm()
+        )
+        (ffn): FeedForward(
+          (project_in): Conv2d(12, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (dwconv): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=96, bias=False)
+          (project_out): Conv2d(48, 12, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+      (1): TransformerBlock(
+        (norm1): LayerNorm(
+          (body): WithBias_LayerNorm()
+        )
+        (attn): Attention(
+          (qkv): Conv2d(12, 36, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (qkv_dwconv): Conv2d(36, 36, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=36, bias=False)
+          (project_out): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (norm2): LayerNorm(
+          (body): WithBias_LayerNorm()
+        )
+        (ffn): FeedForward(
+          (project_in): Conv2d(12, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (dwconv): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=96, bias=False)
+          (project_out): Conv2d(48, 12, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+      (2): TransformerBlock(
+        (norm1): LayerNorm(
+          (body): WithBias_LayerNorm()
+        )
+        (attn): Attention(
+          (qkv): Conv2d(12, 36, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (qkv_dwconv): Conv2d(36, 36, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=36, bias=False)
+          (project_out): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (norm2): LayerNorm(
+          (body): WithBias_LayerNorm()
+        )
+        (ffn): FeedForward(
+          (project_in): Conv2d(12, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (dwconv): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=96, bias=False)
+          (project_out): Conv2d(48, 12, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+      (3): TransformerBlock(
+        (norm1): LayerNorm(
+          (body): WithBias_LayerNorm()
+        )
+        (attn): Attention(
+          (qkv): Conv2d(12, 36, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (qkv_dwconv): Conv2d(36, 36, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=36, bias=False)
+          (project_out): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (norm2): LayerNorm(
+          (body): WithBias_LayerNorm()
+        )
+        (ffn): FeedForward(
+          (project_in): Conv2d(12, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (dwconv): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=96, bias=False)
+          (project_out): Conv2d(48, 12, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+    )
+    (prompt): PromptGenBlock(
+      (linear_layer): Linear(in_features=12, out_features=3, bias=True)
+      (conv3x3): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    )
+    (fuse): Conv2d(24, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+)
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.conv1.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.conv1.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.conv1.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.conv1.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down1.layer.0.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down1.layer.0.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down1.layer.1.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down1.layer.1.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down1.layer.1.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down1.layer.1.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down2.layer.0.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down2.layer.0.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down2.layer.1.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down2.layer.1.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down2.layer.1.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down2.layer.1.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down3.layer.0.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down3.layer.0.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down3.layer.1.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down3.layer.1.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down3.layer.1.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down3.layer.1.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down4.layer.0.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down4.layer.0.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down4.layer.1.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down4.layer.1.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down4.layer.1.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.down4.layer.1.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.up3.conv.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.up3.conv.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.linear3.weight] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.linear3.bias] will not optimize.
+2025-06-17 11:59:29,184 - WARNING - Params [module.bitencoder.Conv_message3.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.Conv_message3.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.Conv_message3.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.Conv_message3.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att3.layers.0.change.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att3.layers.0.left.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att3.layers.0.left.3.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att3.layers.0.left.6.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att3.layers.0.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att3.layers.0.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att3.layers.1.left.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att3.layers.1.left.3.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att3.layers.1.left.6.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att3.layers.1.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att3.layers.1.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.up2.conv.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.up2.conv.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.linear2.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.linear2.bias] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.Conv_message2.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.Conv_message2.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.Conv_message2.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.Conv_message2.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att2.layers.0.change.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att2.layers.0.left.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att2.layers.0.left.3.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att2.layers.0.left.6.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att2.layers.0.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att2.layers.0.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att2.layers.1.left.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att2.layers.1.left.3.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att2.layers.1.left.6.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att2.layers.1.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att2.layers.1.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.up1.conv.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.up1.conv.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.linear1.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.linear1.bias] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.Conv_message1.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.Conv_message1.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.Conv_message1.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.Conv_message1.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,185 - WARNING - Params [module.bitencoder.att1.layers.0.change.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att1.layers.0.left.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att1.layers.0.left.3.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att1.layers.0.left.6.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att1.layers.0.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att1.layers.0.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att1.layers.1.left.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att1.layers.1.left.3.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att1.layers.1.left.6.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att1.layers.1.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att1.layers.1.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.up0.conv.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.up0.conv.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.linear0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.linear0.bias] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.Conv_message0.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.Conv_message0.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.Conv_message0.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.Conv_message0.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att0.layers.0.change.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att0.layers.0.left.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att0.layers.0.left.3.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att0.layers.0.left.6.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att0.layers.0.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att0.layers.0.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att0.layers.1.left.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att0.layers.1.left.3.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att0.layers.1.left.6.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att0.layers.1.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.att0.layers.1.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.Conv_1x1.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitencoder.Conv_1x1.bias] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitdecoder.conv1.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitdecoder.conv1.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitdecoder.conv1.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitdecoder.conv1.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitdecoder.down1.layer.0.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitdecoder.down1.layer.0.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitdecoder.down1.layer.1.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitdecoder.down1.layer.1.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitdecoder.down1.layer.1.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitdecoder.down1.layer.1.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,186 - WARNING - Params [module.bitdecoder.down2.layer.0.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down2.layer.0.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down2.layer.1.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down2.layer.1.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down2.layer.1.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down2.layer.1.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down3.layer.0.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down3.layer.0.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down3.layer.1.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down3.layer.1.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down3.layer.1.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down3.layer.1.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down4.layer.0.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down4.layer.0.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down4.layer.1.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down4.layer.1.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down4.layer.1.layers.1.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.down4.layer.1.layers.1.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.up3.conv.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.up3.conv.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att3.layers.0.change.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att3.layers.0.left.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att3.layers.0.left.3.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att3.layers.0.left.6.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att3.layers.0.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att3.layers.0.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att3.layers.1.left.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att3.layers.1.left.3.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att3.layers.1.left.6.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att3.layers.1.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att3.layers.1.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.up2.conv.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.up2.conv.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att2.layers.0.change.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att2.layers.0.left.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att2.layers.0.left.3.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att2.layers.0.left.6.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att2.layers.0.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att2.layers.0.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att2.layers.1.left.0.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att2.layers.1.left.3.weight] will not optimize.
+2025-06-17 11:59:29,187 - WARNING - Params [module.bitdecoder.att2.layers.1.left.6.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att2.layers.1.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att2.layers.1.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.up1.conv.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.up1.conv.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att1.layers.0.change.0.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att1.layers.0.left.0.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att1.layers.0.left.3.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att1.layers.0.left.6.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att1.layers.0.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att1.layers.0.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att1.layers.1.left.0.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att1.layers.1.left.3.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att1.layers.1.left.6.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att1.layers.1.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att1.layers.1.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.up0.conv.layers.0.layers.0.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.up0.conv.layers.0.layers.0.bias] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att0.layers.0.change.0.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att0.layers.0.left.0.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att0.layers.0.left.3.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att0.layers.0.left.6.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att0.layers.0.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att0.layers.0.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att0.layers.1.left.0.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att0.layers.1.left.3.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att0.layers.1.left.6.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att0.layers.1.attention.se.1.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.att0.layers.1.attention.se.3.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.Conv_1x1.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.message_layer.weight] will not optimize.
+2025-06-17 11:59:29,188 - WARNING - Params [module.bitdecoder.message_layer.bias] will not optimize.
+2025-06-17 11:59:29,190 - INFO - Model [Model_VSN] is created.
+
+========== Image ID: 1 ==========
+Embed time: 0.82 seconds
+Adding motion blur...
+Extract time: 0.15 seconds
+BA: 0.046875
+
+========== Image ID: 2 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 3 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 4 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 5 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 6 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 7 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 8 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.015625
+
+========== Image ID: 9 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 10 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 11 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 12 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 13 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 14 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 15 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 16 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 17 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 18 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 19 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 20 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 21 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 22 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.390625
+
+========== Image ID: 23 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 24 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 25 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 26 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 27 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 28 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 29 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.390625
+
+========== Image ID: 30 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 31 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.46875
+
+========== Image ID: 32 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 33 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 34 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 35 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 36 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 37 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 38 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 39 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 40 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 41 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 42 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 43 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 44 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.390625
+
+========== Image ID: 45 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 46 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 47 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 48 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 49 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 50 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.46875
+
+========== Image ID: 51 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 52 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 53 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 54 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 55 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.390625
+
+========== Image ID: 56 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 57 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 58 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 59 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 60 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 61 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.40625
+
+========== Image ID: 62 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 63 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 64 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.390625
+
+========== Image ID: 65 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 66 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 67 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 68 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 69 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 70 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 71 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 72 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 73 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 74 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 75 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 76 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 77 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 78 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 79 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 80 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 81 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 82 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 83 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 84 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 85 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 86 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 87 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 88 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.46875
+
+========== Image ID: 89 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 90 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 91 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 92 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 93 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 94 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 95 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 96 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 97 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 98 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 99 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 100 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 101 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 102 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 103 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 104 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.375
+
+========== Image ID: 105 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 106 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 107 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 108 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 109 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 110 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 111 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0
+
+========== Image ID: 112 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 113 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 114 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 115 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 116 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.015625
+
+========== Image ID: 117 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 118 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 119 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 120 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 121 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.046875
+
+========== Image ID: 122 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 123 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 124 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 125 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.234375
+
+========== Image ID: 126 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.03125
+
+========== Image ID: 127 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 128 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 129 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 130 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 131 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 132 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 133 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 134 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 135 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 136 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 137 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 138 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 139 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.421875
+
+========== Image ID: 140 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 141 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 142 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 143 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 144 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.015625
+
+========== Image ID: 145 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 146 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 147 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 148 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 149 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 150 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 151 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.171875
+
+========== Image ID: 152 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 153 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 154 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 155 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 156 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 157 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 158 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 159 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 160 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.03125
+
+========== Image ID: 161 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 162 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 163 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 164 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 165 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.046875
+
+========== Image ID: 166 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 167 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 168 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 169 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.375
+
+========== Image ID: 170 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 171 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 172 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 173 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 174 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 175 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 176 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 177 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.453125
+
+========== Image ID: 178 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.03125
+
+========== Image ID: 179 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 180 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 181 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 182 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 183 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.03125
+
+========== Image ID: 184 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 185 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 186 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 187 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.046875
+
+========== Image ID: 188 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 189 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 190 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.375
+
+========== Image ID: 191 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 192 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 193 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 194 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 195 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 196 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 197 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 198 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 199 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 200 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 201 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.375
+
+========== Image ID: 202 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 203 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 204 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 205 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.4375
+
+========== Image ID: 206 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 207 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 208 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 209 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 210 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 211 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 212 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 213 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 214 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 215 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 216 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 217 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 218 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 219 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 220 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 221 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.40625
+
+========== Image ID: 222 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 223 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 224 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 225 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 226 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 227 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 228 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 229 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 230 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 231 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 232 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 233 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 234 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 235 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 236 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 237 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 238 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.265625
+
+========== Image ID: 239 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 240 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 241 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 242 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 243 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 244 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 245 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 246 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 247 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 248 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 249 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.59375
+
+========== Image ID: 250 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 251 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 252 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 253 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 254 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 255 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 256 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 257 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 258 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 259 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.125
+
+========== Image ID: 260 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 261 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 262 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 263 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.046875
+
+========== Image ID: 264 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 265 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 266 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 267 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 268 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 269 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 270 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 271 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 272 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 273 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 274 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 275 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 276 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 277 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 278 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 279 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 280 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 281 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 282 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 283 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 284 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 285 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 286 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 287 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 288 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 289 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 290 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.375
+
+========== Image ID: 291 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 292 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 293 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 294 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 295 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 296 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.40625
+
+========== Image ID: 297 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.4375
+
+========== Image ID: 298 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.484375
+
+========== Image ID: 299 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 300 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 301 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 302 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 303 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.34375
+
+========== Image ID: 304 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.421875
+
+========== Image ID: 305 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 306 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 307 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 308 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.4375
+
+========== Image ID: 309 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.078125
+
+========== Image ID: 310 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.40625
+
+========== Image ID: 311 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 312 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 313 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 314 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 315 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 316 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 317 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.171875
+
+========== Image ID: 318 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 319 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 320 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 321 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 322 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 323 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 324 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 325 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 326 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.40625
+
+========== Image ID: 327 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 328 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 329 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 330 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 331 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 332 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 333 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 334 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 335 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 336 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.453125
+
+========== Image ID: 337 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 338 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 339 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.375
+
+========== Image ID: 340 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 341 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 342 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 343 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 344 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.359375
+
+========== Image ID: 345 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 346 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 347 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.109375
+
+========== Image ID: 348 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.234375
+
+========== Image ID: 349 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 350 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 351 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 352 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 353 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 354 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 355 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 356 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.140625
+
+========== Image ID: 357 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.03125
+
+========== Image ID: 358 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 359 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 360 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 361 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 362 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 363 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 364 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 365 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.046875
+
+========== Image ID: 366 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 367 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 368 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 369 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 370 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 371 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 372 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 373 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 374 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 375 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 376 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.40625
+
+========== Image ID: 377 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 378 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 379 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 380 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 381 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 382 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 383 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 384 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 385 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 386 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 387 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.40625
+
+========== Image ID: 388 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 389 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.375
+
+========== Image ID: 390 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.015625
+
+========== Image ID: 391 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 392 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 393 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 394 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 395 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 396 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 397 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 398 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 399 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 400 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 401 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 402 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 403 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.046875
+
+========== Image ID: 404 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 405 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 406 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 407 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 408 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.46875
+
+========== Image ID: 409 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 410 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 411 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 412 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 413 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 414 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 415 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 416 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 417 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 418 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 419 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 420 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 421 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 422 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 423 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 424 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 425 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 426 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 427 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 428 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 429 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 430 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 431 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 432 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.390625
+
+========== Image ID: 433 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 434 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 435 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 436 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 437 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 438 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 439 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 440 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 441 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 442 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 443 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 444 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 445 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 446 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 447 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.390625
+
+========== Image ID: 448 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 449 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 450 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 451 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 452 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 453 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 454 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 455 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 456 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.484375
+
+========== Image ID: 457 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 458 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 459 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.03125
+
+========== Image ID: 460 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 461 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 462 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 463 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 464 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 465 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 466 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 467 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 468 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 469 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.09375
+
+========== Image ID: 470 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 471 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 472 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 473 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 474 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 475 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 476 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 477 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 478 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 479 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 480 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 481 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 482 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 483 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 484 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 485 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 486 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 487 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 488 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 489 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 490 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 491 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 492 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 493 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 494 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 495 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 496 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 497 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.21875
+
+========== Image ID: 498 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 499 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 500 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 501 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 502 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 503 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 504 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 505 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 506 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 507 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.046875
+
+========== Image ID: 508 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 509 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 510 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 511 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.265625
+
+========== Image ID: 512 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 513 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 514 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 515 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 516 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 517 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 518 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 519 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 520 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 521 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 522 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 523 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 524 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 525 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 526 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 527 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 528 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 529 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 530 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 531 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 532 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 533 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 534 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 535 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 536 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.21875
+
+========== Image ID: 537 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.390625
+
+========== Image ID: 538 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 539 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 540 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 541 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 542 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 543 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 544 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 545 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 546 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.140625
+
+========== Image ID: 547 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 548 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 549 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 550 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 551 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 552 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 553 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 554 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 555 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 556 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 557 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.390625
+
+========== Image ID: 558 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 559 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 560 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 561 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 562 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 563 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 564 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 565 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 566 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 567 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 568 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 569 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 570 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.453125
+
+========== Image ID: 571 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 572 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 573 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 574 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 575 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 576 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 577 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 578 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 579 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 580 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 581 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 582 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 583 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 584 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 585 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 586 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 587 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 588 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 589 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 590 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 591 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 592 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 593 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 594 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.359375
+
+========== Image ID: 595 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 596 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 597 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 598 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.046875
+
+========== Image ID: 599 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 600 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.46875
+
+========== Image ID: 601 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 602 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 603 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 604 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.375
+
+========== Image ID: 605 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 606 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 607 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 608 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 609 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 610 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 611 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 612 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 613 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 614 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 615 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 616 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 617 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 618 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 619 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.09375
+
+========== Image ID: 620 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 621 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 622 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 623 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 624 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 625 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.125
+
+========== Image ID: 626 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 627 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 628 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 629 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 630 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 631 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 632 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 633 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 634 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 635 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 636 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 637 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 638 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 639 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 640 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 641 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 642 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 643 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 644 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 645 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.390625
+
+========== Image ID: 646 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 647 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 648 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 649 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 650 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 651 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 652 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 653 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 654 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 655 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 656 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.375
+
+========== Image ID: 657 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.515625
+
+========== Image ID: 658 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 659 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 660 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 661 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.25
+
+========== Image ID: 662 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 663 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 664 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.421875
+
+========== Image ID: 665 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 666 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 667 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 668 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 669 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.421875
+
+========== Image ID: 670 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 671 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 672 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 673 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 674 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 675 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 676 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 677 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 678 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.234375
+
+========== Image ID: 679 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.390625
+
+========== Image ID: 680 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 681 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 682 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 683 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 684 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 685 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 686 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 687 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 688 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 689 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 690 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 691 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 692 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 693 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 694 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 695 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 696 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 697 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 698 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 699 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 700 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.46875
+
+========== Image ID: 701 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 702 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 703 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 704 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 705 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 706 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 707 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 708 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 709 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 710 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.40625
+
+========== Image ID: 711 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 712 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 713 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 714 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 715 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 716 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 717 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 718 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.03125
+
+========== Image ID: 719 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 720 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.390625
+
+========== Image ID: 721 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.125
+
+========== Image ID: 722 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 723 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 724 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 725 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 726 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 727 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 728 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 729 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 730 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 731 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 732 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 733 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 734 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 735 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 736 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 737 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.40625
+
+========== Image ID: 738 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 739 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 740 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 741 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 742 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 743 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 744 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 745 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 746 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 747 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 748 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 749 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 750 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 751 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 752 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 753 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.375
+
+========== Image ID: 754 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 755 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.265625
+
+========== Image ID: 756 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.53125
+
+========== Image ID: 757 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 758 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 759 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 760 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 761 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 762 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 763 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 764 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 765 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 766 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 767 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 768 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 769 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 770 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 771 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 772 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 773 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 774 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 775 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 776 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 777 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 778 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 779 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 780 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 781 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 782 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.4375
+
+========== Image ID: 783 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 784 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 785 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 786 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 787 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 788 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 789 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 790 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 791 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 792 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.515625
+
+========== Image ID: 793 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 794 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 795 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 796 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 797 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 798 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 799 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 800 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 801 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.046875
+
+========== Image ID: 802 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 803 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 804 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 805 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 806 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 807 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 808 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 809 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 810 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 811 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 812 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.234375
+
+========== Image ID: 813 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 814 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 815 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 816 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.3125
+
+========== Image ID: 817 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 818 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 819 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 820 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 821 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 822 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 823 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 824 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 825 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 826 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 827 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 828 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 829 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 830 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 831 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 832 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 833 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 834 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 835 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.421875
+
+========== Image ID: 836 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 837 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 838 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 839 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 840 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 841 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 842 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 843 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 844 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 845 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 846 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 847 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 848 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 849 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 850 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.015625
+
+========== Image ID: 851 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 852 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 853 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 854 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 855 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 856 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.203125
+
+========== Image ID: 857 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 858 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 859 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 860 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 861 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 862 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 863 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.375
+
+========== Image ID: 864 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 865 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 866 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 867 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 868 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 869 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 870 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 871 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 872 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 873 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 874 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 875 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 876 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 877 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 878 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 879 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 880 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 881 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 882 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 883 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 884 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 885 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 886 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.03125
+
+========== Image ID: 887 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 888 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 889 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 890 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.375
+
+========== Image ID: 891 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 892 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.046875
+
+========== Image ID: 893 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 894 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 895 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 896 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 897 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 898 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 899 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.0625
+
+========== Image ID: 900 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 901 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 902 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 903 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 904 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 905 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 906 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.484375
+
+========== Image ID: 907 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 908 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.4375
+
+========== Image ID: 909 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 910 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 911 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 912 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 913 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 914 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 915 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 916 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 917 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.046875
+
+========== Image ID: 918 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 919 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 920 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 921 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 922 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.46875
+
+========== Image ID: 923 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 924 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 925 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.40625
+
+========== Image ID: 926 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 927 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.046875
+
+========== Image ID: 928 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 929 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 930 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.3125
+
+========== Image ID: 931 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 932 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.390625
+
+========== Image ID: 933 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 934 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 935 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 936 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 937 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 938 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 939 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 940 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 941 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 942 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.390625
+
+========== Image ID: 943 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 944 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 945 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.203125
+
+========== Image ID: 946 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 947 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.265625
+
+========== Image ID: 948 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 949 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 950 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 951 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.046875
+
+========== Image ID: 952 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 953 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 954 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 955 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 956 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 957 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 958 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 959 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.375
+
+========== Image ID: 960 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 961 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.359375
+
+========== Image ID: 962 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 963 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 964 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 965 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 966 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 967 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 968 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 969 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.375
+
+========== Image ID: 970 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 971 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 972 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.328125
+
+========== Image ID: 973 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.234375
+
+========== Image ID: 974 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 975 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.1875
+
+========== Image ID: 976 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 977 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+
+========== Image ID: 978 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 979 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 980 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 981 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.296875
+
+========== Image ID: 982 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.140625
+
+========== Image ID: 983 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.125
+
+========== Image ID: 984 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.15625
+
+========== Image ID: 985 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.28125
+
+========== Image ID: 986 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 987 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.40625
+
+========== Image ID: 988 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 989 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 990 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 991 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.109375
+
+========== Image ID: 992 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.234375
+
+========== Image ID: 993 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.078125
+
+========== Image ID: 994 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.25
+
+========== Image ID: 995 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.34375
+
+========== Image ID: 996 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.0625
+
+========== Image ID: 997 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.09375
+
+========== Image ID: 998 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.21875
+
+========== Image ID: 999 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.06 seconds
+BA: 0.15625
+
+========== Image ID: 1000 ==========
+Embed time: 0.08 seconds
+Adding motion blur...
+Extract time: 0.05 seconds
+BA: 0.171875
+0.18645833333333334
+
+========== Overall Results =========
+# Validation # PSNR_Cover: 2.3997e+01, PSNR_Secret: _4.7446e+00, PSNR_Stego: 2.4040e+01,  Bit_Error: 2.0750e-01
