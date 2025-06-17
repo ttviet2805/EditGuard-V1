@@ -44,8 +44,8 @@ datasets:
     random_reverse: false
     border_mode: false
     # ----- VN START -----
-    data_path: ../dataset/COCO-2017
-    txt_path: ../dataset/COCO-2017.txt
+    data_path: ../dataset/COCO-10-images
+    txt_path: ../dataset/COCO-10-images.txt
     # ----- ORIGINAL -----
     # data_path: /userhome/train2017
     # txt_path: /userhome/train2017.txt
