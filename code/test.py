@@ -142,9 +142,9 @@ def main():
 
         visuals = model.get_current_visuals()
 
-        t_step = visuals['SR'].shape[0]
-        idx += t_step
-        n = len(visuals['SR_h'])
+        # t_step = visuals['SR'].shape[0]
+        # idx += t_step
+        # n = len(visuals['SR_h'])
 
         a = visuals['recmessage'][0]
         b = visuals['message'][0]
@@ -165,63 +165,67 @@ def main():
         curImageResult.append_to_file()
         # ----- VN END -----
 
-        for i in range(t_step):
+        # for i in range(t_step):
 
-            sr_img = util.tensor2img(visuals['SR'][i])  # uint8
-            sr_img_h = []
-            for j in range(n):
-                sr_img_h.append(util.tensor2img(visuals['SR_h'][j][i]))  # uint8
-            gt_img = util.tensor2img(visuals['GT'][i])  # uint8
-            lr_img = util.tensor2img(visuals['LR'][i])
-            lrgt_img = []
-            for j in range(n):
-                lrgt_img.append(util.tensor2img(visuals['LR_ref'][j][i]))
+        #     sr_img = util.tensor2img(visuals['SR'][i])  # uint8
+        #     sr_img_h = []
+        #     for j in range(n):
+        #         sr_img_h.append(util.tensor2img(visuals['SR_h'][j][i]))  # uint8
+        #     gt_img = util.tensor2img(visuals['GT'][i])  # uint8
+        #     lr_img = util.tensor2img(visuals['LR'][i])
+        #     lrgt_img = []
+        #     for j in range(n):
+        #         lrgt_img.append(util.tensor2img(visuals['LR_ref'][j][i]))
 
-            # Save SR images for reference
-            save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:s}.png'.format(image_id, i, 'SR'))
-            util.save_img(sr_img, save_img_path)
+        #     # Save SR images for reference
+        #     save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:s}.png'.format(image_id, i, 'SR'))
+        #     util.save_img(sr_img, save_img_path)
 
-            for j in range(n):
-                save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:d}_{:s}.png'.format(image_id, i, j, 'SR_h'))
-                util.save_img(sr_img_h[j], save_img_path)
+        #     for j in range(n):
+        #         save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:d}_{:s}.png'.format(image_id, i, j, 'SR_h'))
+        #         util.save_img(sr_img_h[j], save_img_path)
 
-            save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:s}.png'.format(image_id, i, 'GT'))
-            util.save_img(gt_img, save_img_path)
+        #     save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:s}.png'.format(image_id, i, 'GT'))
+        #     util.save_img(gt_img, save_img_path)
 
-            save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:s}.png'.format(image_id, i, 'LR'))
-            util.save_img(lr_img, save_img_path)
+        #     save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:s}.png'.format(image_id, i, 'LR'))
+        #     util.save_img(lr_img, save_img_path)
 
-            for j in range(n):
-                save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:d}_{:s}.png'.format(image_id, i, j, 'LRGT'))
-                util.save_img(lrgt_img[j], save_img_path)
+        #     for j in range(n):
+        #         save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:d}_{:s}.png'.format(image_id, i, j, 'LRGT'))
+        #         util.save_img(lrgt_img[j], save_img_path)
 
-            psnr = cal_pnsr(sr_img, gt_img)
-            psnr_h = []
-            for j in range(n):
-                psnr_h.append(cal_pnsr(sr_img_h[j], lrgt_img[j]))
-            psnr_lr = cal_pnsr(lr_img, gt_img)
+        #     psnr = cal_pnsr(sr_img, gt_img)
+        #     psnr_h = []
+        #     for j in range(n):
+        #         psnr_h.append(cal_pnsr(sr_img_h[j], lrgt_img[j]))
+        #     psnr_lr = cal_pnsr(lr_img, gt_img)
 
-            avg_psnr += psnr
-            for j in range(n):
-                avg_psnr_h[j] += psnr_h[j]
-            avg_psnr_lr += psnr_lr
+        #     avg_psnr += psnr
+        #     for j in range(n):
+        #         avg_psnr_h[j] += psnr_h[j]
+        #     avg_psnr_lr += psnr_lr
 
-    avg_psnr = avg_psnr / idx
+    # avg_psnr = avg_psnr / idx
     avg_biterr = sum(biterr) / len(biterr)
     print(get_min_avg_and_indices(biterr))
 
-    avg_psnr_h = [psnr / idx for psnr in avg_psnr_h]
-    avg_psnr_lr = avg_psnr_lr / idx
-    res_psnr_h = ''
-    for p in avg_psnr_h:
-        res_psnr_h+=('_{:.4e}'.format(p))
+    # avg_psnr_h = [psnr / idx for psnr in avg_psnr_h]
+    # avg_psnr_lr = avg_psnr_lr / idx
+    # res_psnr_h = ''
+    # for p in avg_psnr_h:
+    #     res_psnr_h+=('_{:.4e}'.format(p))
     
+    # ----- VN START -----
     print("\n========== Overall Results =========")
-    print('# Validation # PSNR_Cover: {:.4e}, PSNR_Secret: {:s}, PSNR_Stego: {:.4e},  Bit_Error: {:.4e}'.format(avg_psnr, res_psnr_h, avg_psnr_lr, avg_biterr))
+    print('# Bit_Error: {:.4e}'.format(avg_biterr))
+    # ----- ORIGINAL -----
+    # print('# Validation # PSNR_Cover: {:.4e}, PSNR_Secret: {:s}, PSNR_Stego: {:.4e},  Bit_Error: {:.4e}'.format(avg_psnr, res_psnr_h, avg_psnr_lr, avg_biterr))
+    # ----- VN END -----
 
     # ----- VN START -----
-    avg_result = '\n\n# Validation # PSNR_Cover: {:.4e}, PSNR_Secret: {:s}, PSNR_Stego: {:.4e},  Bit_Error: {:.4e}'.format(avg_psnr, res_psnr_h, avg_psnr_lr, avg_biterr)
-    image_result.append_content_to_file(content=avg_result)
+    # avg_result = '\n\n# Validation # PSNR_Cover: {:.4e}, PSNR_Secret: {:s}, PSNR_Stego: {:.4e},  Bit_Error: {:.4e}'.format(avg_psnr, res_psnr_h, avg_psnr_lr, avg_biterr)
+    # image_result.append_content_to_file(content=avg_result)
     # ----- VN END -----
 
 if __name__ == '__main__':
