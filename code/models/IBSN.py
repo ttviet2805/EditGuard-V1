@@ -270,6 +270,7 @@ class Model_VSN(BaseModel):
                 y_forw = self.DiffJPEG(y_forw)
 
             elif add_possion:
+                import random
                 vals = 10**4
                 if random.random() < 0.5:
                     noisy_img_tensor = torch.poisson(y_forw * vals) / vals
@@ -359,7 +360,7 @@ class Model_VSN(BaseModel):
         add_sdxl = self.opt['sdxl']
         add_repaint = self.opt['repaint']
         degrade_shuffle = self.opt['degrade_shuffle']
-
+        degrade_shuffle_test = self.opt['degrade_shuffle_test']
         with torch.no_grad():
             forw_L = []
             forw_L_h = []

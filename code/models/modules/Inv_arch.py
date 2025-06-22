@@ -17,7 +17,8 @@ import numbers
 from einops import rearrange
 from models.bitnetwork.Encoder_U import DW_Encoder
 from models.bitnetwork.Decoder_U import DW_Decoder
-
+from models.bitnetwork.Encoder_U_2 import DW_Encoder_2
+from models.bitnetwork.Decoder_U_2 import DW_Decoder_2
 
 ## Layer Norm
 def to_3d(x):
@@ -542,8 +543,10 @@ class VSN(nn.Module):
         self.block_num_trans = opt_net['block_num_trans']
         self.nf = self.channel_in_hi 
         
-        self.bitencoder = DW_Encoder(self.message_len, attention = "se")
-        self.bitdecoder = DW_Decoder(self.message_len, attention = "se")
+        # self.bitencoder = DW_Encoder(self.message_len, attention = "se")
+        self.bitencoder = DW_Encoder_2(self.message_len, attention = "se")
+        # self.bitdecoder = DW_Decoder(self.message_len, attention = "se")
+        self.bitdecoder = DW_Decoder_2(self.message_len, attention = "se")
         self.irn = InvNN(self.channel_in_ho, self.channel_in_hi, subnet_constructor, subnet_constructor_v2, self.block_num, down_num, groups=self.num_image)
 
         if opt['prompt']:
