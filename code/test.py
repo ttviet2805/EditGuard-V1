@@ -151,7 +151,8 @@ def main():
 
         bitrecord = util.decoded_message_error_rate_batch(a, b)
         # ----- VN START -----
-        print("BA: " + str(bitrecord))
+        bit_accuracy = 1 - bitrecord
+        print(f"BA: {bit_accuracy * 100:.2f}%")
         # ----- VN END -----
         biterr.append(bitrecord)
 
