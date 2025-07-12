@@ -80,7 +80,7 @@ datasets:
 
   val:
     # ----- VN START -----
-    image_size: 128 # IMPORTANT: Config this before training
+    image_size: 512 # IMPORTANT: Config this before training
     # ----- VN END -----
     num_image: 1
     name: Vid4
