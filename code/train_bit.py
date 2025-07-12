@@ -212,9 +212,9 @@ def main():
                 for i in range(2):
                     DEGRADATION = "JPEG" if i == 0 else "Gaussian Noise"
                     if DEGRADATION == "JPEG":
-                        print(f"----- Start Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['jpegfactor_val']} -----")
+                        print(f"----- Start Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['jpegfactor_val']} for iteration {current_step} -----")
                     elif DEGRADATION == "Gaussian Noise":
-                        print(f"----- Start Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['noisesigma_val']} -----")
+                        print(f"----- Start Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['noisesigma_val']} for iteration {current_step} -----")
                         
                     for image_id, val_data in enumerate(val_loader):
                         img_dir = os.path.join(opt['path']['val_images'])
@@ -261,9 +261,9 @@ def main():
                         tb_logger.add_scalar('psnr', avg_psnr, current_step)
                         
                     if DEGRADATION == "JPEG":
-                        print(f"----- End Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['jpegfactor_val']} -----")
+                        print(f"----- End Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['jpegfactor_val']} for iteration {current_step} -----")
                     elif DEGRADATION == "Gaussian Noise":
-                        print(f"----- End Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['noisesigma_val']} -----")
+                        print(f"----- End Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['noisesigma_val']} for iteration {current_step} -----")
                 # ----- VN END -----
 
             # save models and training states
