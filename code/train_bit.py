@@ -17,6 +17,7 @@ from models import create_model
 # ----- VN START -----
 import sys
 import logging
+import global_variables
 
 # Open the file with UTF-8 encoding to support emojis and Unicode
 logfile = open("train_bit_console.log", "w", encoding="utf-8")
@@ -206,45 +207,64 @@ def main():
                 avg_psnr_lr = 0.0
                 avg_biterr = 0.0
                 idx = 0
-                for image_id, val_data in enumerate(val_loader):
-                    img_dir = os.path.join(opt['path']['val_images'])
-                    util.mkdir(img_dir)
+                
+                # ----- VN START -----
+                for i in range(2):
+                    DEGRADATION = "JPEG" if i == 0 else "Gaussian Noise"
+                    if DEGRADATION == "JPEG":
+                        print(f"\n----- Start Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['jpegfactor_val']} -----")
+                    elif DEGRADATION == "Gaussian Noise":
+                        print(f"\n----- Start Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['noisesigma_val']} -----")
+                        
+                    for image_id, val_data in enumerate(val_loader):
+                        img_dir = os.path.join(opt['path']['val_images'])
+                        util.mkdir(img_dir)
 
-                    model.feed_data(val_data)
-                    model.test(image_id)
+                        model.feed_data(val_data)
+                        # ----- VN START -----
+                        model.test(image_id, mode = "validation", degradation = DEGRADATION)
+                        # ----- ORIGINAL -----
+                        # model.test(image_id)
+                        # ----- VN END -----
 
-                    visuals = model.get_current_visuals()
+                        visuals = model.get_current_visuals()
 
-                    t_step = visuals['recmessage'].shape[0]
-                    idx += t_step
-                    n = 1
-                    # print(visuals['message'].shape)
-                    avg_biterr += util.decoded_message_error_rate_batch(visuals['recmessage'][0], visuals['message'][0])
-                    print(util.decoded_message_error_rate_batch(visuals['recmessage'][0], visuals['message'][0]))
+                        t_step = visuals['recmessage'].shape[0]
+                        idx += t_step
+                        n = 1
+                        # print(visuals['message'].shape)
+                        avg_biterr += util.decoded_message_error_rate_batch(visuals['recmessage'][0], visuals['message'][0])
+                        print(util.decoded_message_error_rate_batch(visuals['recmessage'][0], visuals['message'][0]))
 
-                    for i in range(t_step):
+                        for i in range(t_step):
 
-                        gt_img = util.tensor2img(visuals['GT'][i])  # uint8
-                        lr_img = util.tensor2img(visuals['LR'][i])
+                            gt_img = util.tensor2img(visuals['GT'][i])  # uint8
+                            lr_img = util.tensor2img(visuals['LR'][i])
 
-                        save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:s}.png'.format(image_id, i, 'GT'))
-                        util.save_img(gt_img, save_img_path)
+                            save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:s}.png'.format(image_id, i, 'GT'))
+                            util.save_img(gt_img, save_img_path)
 
-                        save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:s}.png'.format(image_id, i, 'LR'))
-                        util.save_img(lr_img, save_img_path)
-                        psnr_lr = cal_pnsr(lr_img, gt_img)
-                        avg_psnr_lr += psnr_lr
+                            save_img_path = os.path.join(img_dir,'{:d}_{:d}_{:s}.png'.format(image_id, i, 'LR'))
+                            util.save_img(lr_img, save_img_path)
+                            psnr_lr = cal_pnsr(lr_img, gt_img)
+                            avg_psnr_lr += psnr_lr
 
-                avg_psnr_lr = avg_psnr_lr / idx
-                avg_biterr = avg_biterr / idx
+                    avg_psnr_lr = avg_psnr_lr / idx
+                    avg_biterr = avg_biterr / idx
 
-                logger.info('# Validation # PSNR_Stego: {:.4e}, Bit_acc: {: .4e}'.format(avg_psnr_lr, avg_biterr))
-                logger_val = logging.getLogger('val')  # validation logger
-                logger_val.info('<epoch:{:3d}, iter:{:8,d}> PSNR_Stego: {:.4e}, Bit_acc: {: .4e}'.format(
-                    epoch, current_step, avg_psnr_lr, avg_biterr))
-                # tensorboard logger
-                if opt['use_tb_logger'] and 'debug' not in opt['name']:
-                    tb_logger.add_scalar('psnr', avg_psnr, current_step)
+                    logger.info('# Validation # PSNR_Stego: {:.4e}, Bit_acc: {: .4e}'.format(avg_psnr_lr, avg_biterr))
+                    logger_val = logging.getLogger('val')  # validation logger
+                    logger_val.info('<epoch:{:3d}, iter:{:8,d}> PSNR_Stego: {:.4e}, Bit_acc: {: .4e}'.format(
+                        epoch, current_step, avg_psnr_lr, avg_biterr))
+                    # tensorboard logger
+                    if opt['use_tb_logger'] and 'debug' not in opt['name']:
+                        tb_logger.add_scalar('psnr', avg_psnr, current_step)
+                        
+                    if DEGRADATION == "JPEG":
+                        print(f"----- End Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['jpegfactor_val']} -----\n")
+                    elif DEGRADATION == "Gaussian Noise":
+                        print(f"----- End Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['noisesigma_val']} -----\n")
+                # ----- VN END -----
 
             # save models and training states
             if current_step % opt['logger']['save_checkpoint_freq'] == 0:

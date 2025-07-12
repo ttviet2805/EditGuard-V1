@@ -345,7 +345,9 @@ class Model_VSN(BaseModel):
 
             self.optimizer_G.step()
 
-    def test(self, image_id):
+    # ----- VN START -----
+    def test(self, image_id, mode="test", degradation=""):
+    # ----- VN END -----        
         self.netG.eval()
         add_noise = self.opt['addnoise']
         add_jpeg = self.opt['addjpeg']
@@ -564,79 +566,90 @@ class Model_VSN(BaseModel):
                 
                 y_forw = torch.stack(forw_list, dim=0).float().cuda()
 
-            if degrade_shuffle:
-                import random
-                # ----- VN START -----
-                # choice = random.randint(0, 3)
-                # ----- ORIGINAL -----
-                choice = random.randint(0, 2)
-                # ----- VN END -----
-                
-                if choice == 0:
-                    NL = float((np.random.randint(1,5))/255)
-                    noise = np.random.normal(0, NL, y_forw.shape)
-                    torchnoise = torch.from_numpy(noise).cuda().float()
-                    y_forw = y_forw + torchnoise
-
-                elif choice == 1:
-                    NL = 90
+            if mode == "validation":
+                if degradation == "JPEG":
+                    NL = global_variables.TRAIN_BIT_CONFIG['jpegfactor_val']
                     self.DiffJPEG = DiffJPEG(differentiable=True, quality=int(NL)).cuda()
                     y_forw = self.DiffJPEG(y_forw)
-                
-                elif choice == 2:
-                    vals = 10**4
-                    if random.random() < 0.5:
-                        noisy_img_tensor = torch.poisson(y_forw * vals) / vals
-                    else:
-                        img_gray_tensor = torch.mean(y_forw, dim=0, keepdim=True)
-                        noisy_gray_tensor = torch.poisson(img_gray_tensor * vals) / vals
-                        noisy_img_tensor = y_forw + (noisy_gray_tensor - img_gray_tensor)
-
-                    y_forw = torch.clamp(noisy_img_tensor, 0, 1)
-                # ----- VN START -----
-                elif choice == 3:
-                    # Default: kernel size = 9,  angle=torch.tensor([45.0], device=y_forw.device), direction=torch.tensor([0.0], device=y_forw.device)
-                    y_forw = random_motion_blur(y_forw)
-                # ----- VN END -----
-
-            else:
-
-                if add_noise:
-                    NL = self.opt['noisesigma'] / 255.0
+                elif degradation == "Gaussian Noise":
+                    NL = self.opt['noisesigma_val'] / 255.0
                     noise = np.random.normal(0, NL, y_forw.shape)
                     torchnoise = torch.from_numpy(noise).cuda().float()
                     y_forw = y_forw + torchnoise
-
-                elif add_jpeg:
-                    Q = self.opt['jpegfactor']
-                    self.DiffJPEG = DiffJPEG(differentiable=True, quality=int(Q)).cuda()
-                    y_forw = self.DiffJPEG(y_forw)
-
-                elif add_possion:
+            else:
+                if degrade_shuffle:
                     import random
-                    vals = 10**4
-                    if random.random() < 0.5:
-                        noisy_img_tensor = torch.poisson(y_forw * vals) / vals
-                    else:
-                        img_gray_tensor = torch.mean(y_forw, dim=0, keepdim=True)
-                        noisy_gray_tensor = torch.poisson(img_gray_tensor * vals) / vals
-                        noisy_img_tensor = y_forw + (noisy_gray_tensor - img_gray_tensor)
+                    # ----- VN START -----
+                    # choice = random.randint(0, 3)
+                    # ----- ORIGINAL -----
+                    choice = random.randint(0, 2)
+                    # ----- VN END -----
+                    
+                    if choice == 0:
+                        NL = float((np.random.randint(1,5))/255)
+                        noise = np.random.normal(0, NL, y_forw.shape)
+                        torchnoise = torch.from_numpy(noise).cuda().float()
+                        y_forw = y_forw + torchnoise
 
-                    y_forw = torch.clamp(noisy_img_tensor, 0, 1)
-                # ----- VN START -----
-                elif add_blur:
-                    # Default: kernel size = 9,  angle=torch.tensor([45.0], device=y_forw.device), direction=torch.tensor([0.0], device=y_forw.device)
-                    y_forw = random_motion_blur(y_forw)
+                    elif choice == 1:
+                        NL = 90
+                        self.DiffJPEG = DiffJPEG(differentiable=True, quality=int(NL)).cuda()
+                        y_forw = self.DiffJPEG(y_forw)
+                    
+                    elif choice == 2:
+                        vals = 10**4
+                        if random.random() < 0.5:
+                            noisy_img_tensor = torch.poisson(y_forw * vals) / vals
+                        else:
+                            img_gray_tensor = torch.mean(y_forw, dim=0, keepdim=True)
+                            noisy_gray_tensor = torch.poisson(img_gray_tensor * vals) / vals
+                            noisy_img_tensor = y_forw + (noisy_gray_tensor - img_gray_tensor)
 
-                elif add_color_jitter:
-                    print("Adding color jitter...")
-                    jitter = T.ColorJitter(0.3, 0.3, 0.3, 0.1)
-                    # Apply per image in batch
-                    y_forw = torch.stack([
-                        T.ToTensor()(jitter(T.ToPILImage()(img.cpu())))
-                        for img in y_forw
-                    ]).to(y_forw.device)
-                # ----- VN END -----
+                        y_forw = torch.clamp(noisy_img_tensor, 0, 1)
+                    # ----- VN START -----
+                    elif choice == 3:
+                        # Default: kernel size = 9,  angle=torch.tensor([45.0], device=y_forw.device), direction=torch.tensor([0.0], device=y_forw.device)
+                        y_forw = random_motion_blur(y_forw)
+                    # ----- VN END -----
+
+                else:
+
+                    if add_noise:
+                        NL = self.opt['noisesigma'] / 255.0
+                        noise = np.random.normal(0, NL, y_forw.shape)
+                        torchnoise = torch.from_numpy(noise).cuda().float()
+                        y_forw = y_forw + torchnoise
+
+                    elif add_jpeg:
+                        Q = self.opt['jpegfactor']
+                        self.DiffJPEG = DiffJPEG(differentiable=True, quality=int(Q)).cuda()
+                        y_forw = self.DiffJPEG(y_forw)
+
+                    elif add_possion:
+                        import random
+                        vals = 10**4
+                        if random.random() < 0.5:
+                            noisy_img_tensor = torch.poisson(y_forw * vals) / vals
+                        else:
+                            img_gray_tensor = torch.mean(y_forw, dim=0, keepdim=True)
+                            noisy_gray_tensor = torch.poisson(img_gray_tensor * vals) / vals
+                            noisy_img_tensor = y_forw + (noisy_gray_tensor - img_gray_tensor)
+
+                        y_forw = torch.clamp(noisy_img_tensor, 0, 1)
+                    # ----- VN START -----
+                    elif add_blur:
+                        # Default: kernel size = 9,  angle=torch.tensor([45.0], device=y_forw.device), direction=torch.tensor([0.0], device=y_forw.device)
+                        y_forw = random_motion_blur(y_forw)
+
+                    elif add_color_jitter:
+                        print("Adding color jitter...")
+                        jitter = T.ColorJitter(0.3, 0.3, 0.3, 0.1)
+                        # Apply per image in batch
+                        y_forw = torch.stack([
+                            T.ToTensor()(jitter(T.ToPILImage()(img.cpu())))
+                            for img in y_forw
+                        ]).to(y_forw.device)
+                    # ----- VN END -----
                                         
 
             # backward upscaling

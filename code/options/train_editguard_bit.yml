@@ -9,6 +9,12 @@ gpu_ids: [0, 1]
 gop: 1
 num_image: 1
 
+# ----- VN START -----
+### Validation settings
+noisesigma_val: 10
+jpegfactor_val: 70
+# ----- VN END -----
+
 addnoise: False
 noisesigma: 0.05
 
