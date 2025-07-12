@@ -261,9 +261,9 @@ def main():
                         tb_logger.add_scalar('psnr', avg_psnr, current_step)
                         
                     if DEGRADATION == "JPEG":
-                        print(f"----- End Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['jpegfactor_val']} -----\n")
+                        print(f"----- End Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['jpegfactor_val']} -----")
                     elif DEGRADATION == "Gaussian Noise":
-                        print(f"----- End Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['noisesigma_val']} -----\n")
+                        print(f"----- End Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['noisesigma_val']} -----")
                 # ----- VN END -----
 
             # save models and training states
