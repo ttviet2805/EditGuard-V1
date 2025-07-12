@@ -252,7 +252,7 @@ def main():
                     avg_psnr_lr = avg_psnr_lr / idx
                     avg_biterr = avg_biterr / idx
 
-                    logger.info('# Validation # PSNR_Stego: {:.4e}, Bit_acc: {: .4e}'.format(avg_psnr_lr, avg_biterr))
+                    logger.info(f'# Validation {DEGRADATION} for iteration {current_step} # PSNR_Stego: {avg_psnr_lr:.4e}, Bit_acc: {avg_biterr:.4e}')
                     logger_val = logging.getLogger('val')  # validation logger
                     logger_val.info('<epoch:{:3d}, iter:{:8,d}> PSNR_Stego: {:.4e}, Bit_acc: {: .4e}'.format(
                         epoch, current_step, avg_psnr_lr, avg_biterr))
