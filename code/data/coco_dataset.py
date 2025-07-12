@@ -16,6 +16,10 @@ import torch.utils.data as data
 
 import data.util as util
 
+# ----- VN START -----
+import global_variables
+# ----- VN END -----
+
 try:
     import mc
 except ImportError:
@@ -89,8 +93,14 @@ class CoCoDataset(data.Dataset):
         img_frames_h = img_frames_h[:, :, [2, 1, 0]]
         img_frames_h = torch.from_numpy(np.ascontiguousarray(np.transpose(img_frames_h, (2, 0, 1)))).float().unsqueeze(0)
 
-        img_frames_h = torch.nn.functional.interpolate(img_frames_h, size=(512, 512), mode='nearest', align_corners=None).unsqueeze(0)
-        img_frames = torch.nn.functional.interpolate(img_frames, size=(512, 512), mode='nearest', align_corners=None)
+        # ----- VN START -----
+        image_size = global_variables.TRAIN_BIT_CONFIG['datasets']['train']['image_size']
+        img_frames_h = torch.nn.functional.interpolate(img_frames_h, size=(image_size, image_size), mode='nearest', align_corners=None).unsqueeze(0)
+        img_frames = torch.nn.functional.interpolate(img_frames, size=(image_size, image_size), mode='nearest', align_corners=None)
+        # ----- ORIGINAL -----
+        # img_frames_h = torch.nn.functional.interpolate(img_frames_h, size=(512, 512), mode='nearest', align_corners=None).unsqueeze(0)
+        # img_frames = torch.nn.functional.interpolate(img_frames, size=(512, 512), mode='nearest', align_corners=None)
+        # ----- VN END -----
 
         return {'GT': img_frames, 'LQ': img_frames_h}
 
