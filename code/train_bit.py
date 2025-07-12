@@ -212,9 +212,9 @@ def main():
                 for i in range(2):
                     DEGRADATION = "JPEG" if i == 0 else "Gaussian Noise"
                     if DEGRADATION == "JPEG":
-                        print(f"\n----- Start Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['jpegfactor_val']} -----")
+                        print(f"----- Start Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['jpegfactor_val']} -----")
                     elif DEGRADATION == "Gaussian Noise":
-                        print(f"\n----- Start Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['noisesigma_val']} -----")
+                        print(f"----- Start Validation with {DEGRADATION} {global_variables.TRAIN_BIT_CONFIG['noisesigma_val']} -----")
                         
                     for image_id, val_data in enumerate(val_loader):
                         img_dir = os.path.join(opt['path']['val_images'])
