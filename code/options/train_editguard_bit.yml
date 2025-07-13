@@ -57,8 +57,8 @@ datasets:
     random_reverse: false
     border_mode: false
     # ----- VN START -----
-    data_path: ../dataset/COCO-30000-images
-    txt_path: ../dataset/COCO-30000-images.txt
+    data_path: ../../COCO-30000-images
+    txt_path: ../dataset/COCO-16000-images.txt
     # ----- ORIGINAL -----
     # data_path: /userhome/train2017
     # txt_path: /userhome/train2017.txt
@@ -126,7 +126,7 @@ train:
   warmup_iter: -1  # no warm up
 
   lr_scheme: MultiStepLR
-  lr_steps: [30000, 100000, 250000] 
+  lr_steps: [10000, 20000, 25000] 
   lr_gamma: 0.5
 
   pixel_criterion_forw: l2
