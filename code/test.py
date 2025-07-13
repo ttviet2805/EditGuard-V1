@@ -221,7 +221,7 @@ def main():
     print("\n========== Overall Results =========")
     print('# Bit_Error: {:.4e}'.format(avg_biterr))
     b_a = 1 - avg_biterr
-    print(f"Bit Accuracy: {b_a * 100:.2f}%")
+    print(f"# Bit Accuracy: {b_a * 100:.2f}%")
     # ----- ORIGINAL -----
     # print('# Validation # PSNR_Cover: {:.4e}, PSNR_Secret: {:s}, PSNR_Stego: {:.4e},  Bit_Error: {:.4e}'.format(avg_psnr, res_psnr_h, avg_psnr_lr, avg_biterr))
     # ----- VN END -----
