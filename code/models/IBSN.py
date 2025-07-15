@@ -364,6 +364,9 @@ class Model_VSN(BaseModel):
 
         with torch.no_grad():
             forw_L = []
+            # ----- VN START -----
+            forw_Con = []
+            # ----- VN END -----
             forw_L_h = []
             fake_H = []
             fake_H_h = []
@@ -412,7 +415,11 @@ class Model_VSN(BaseModel):
                 message = torch.tensor(self.msg_list[image_id]).unsqueeze(0).cuda()
                 self.output = self.host
                 y_forw = self.output.squeeze(1)
-
+            
+            # ----- VN START -----
+            forw_Con.append(y_forw)
+            # ----- VN END -----
+            
             # ----- VN START -----
             end_embed = time.perf_counter() - start_embed
             print(f"Embed time: {end_embed:.2f} seconds")
@@ -696,6 +703,9 @@ class Model_VSN(BaseModel):
             self.fake_H_h = torch.clamp(torch.stack(fake_H_h, dim=2),0,1)
 
         self.forw_L = torch.clamp(torch.stack(forw_L, dim=1),0,1)
+        # ----- VN START -----
+        self.forw_Con = torch.clamp(torch.stack(forw_Con, dim=1),0,1)
+        # ----- VN END -----
         remesg = torch.clamp(torch.stack(recmsglist, dim=0),-0.5,0.5)
 
         if self.opt['hide']:
@@ -800,6 +810,9 @@ class Model_VSN(BaseModel):
             out_dict['SR_h'] = [image.squeeze(0) for image in SR_h]
         
         out_dict['LR'] = self.forw_L.detach()[0].float().cpu()
+        # ----- VN START -----
+        out_dict['Con'] = self.forw_Con.detach()[0].float().cpu()
+        # ----- VN END -----
         out_dict['GT'] = self.real_H[:, center - intval:center + intval + 1].detach()[0].float().cpu()
         out_dict['message'] = self.message
         out_dict['recmessage'] = self.recmessage
