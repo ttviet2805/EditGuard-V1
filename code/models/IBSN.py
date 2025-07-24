@@ -364,6 +364,9 @@ class Model_VSN(BaseModel):
 
         with torch.no_grad():
             forw_L = []
+            # ----- VN START -----
+            forw_Con = []
+            # ----- VN END -----
             forw_L_h = []
             fake_H = []
             fake_H_h = []
@@ -412,7 +415,11 @@ class Model_VSN(BaseModel):
                 message = torch.tensor(self.msg_list[image_id]).unsqueeze(0).cuda()
                 self.output = self.host
                 y_forw = self.output.squeeze(1)
-
+            
+            # ----- VN START -----
+            forw_Con.append(y_forw)
+            # ----- VN END -----
+            
             # ----- VN START -----
             end_embed = time.perf_counter() - start_embed
             print(f"Embed time: {end_embed:.2f} seconds")
@@ -466,7 +473,12 @@ class Model_VSN(BaseModel):
                     i = image_id + 1
                     mask_path = "../dataset/valAGE-Set-Mask/" + str(i).zfill(4) + ".png"
                     mask_image = load_image(mask_path)
-                    mask_image = mask_image.resize((512, 512))
+                    # ----- VN START -----
+                    image_size = global_variables.TEST_CONFIG['datasets']['TD']['image_size']
+                    mask_image = mask_image.resize((image_size, image_size))
+                    # ----- ORIGINAL -----
+                    # mask_image = mask_image.resize((512, 512))
+                    # ----- VN END -----
                     image_init = image_batch[j, :, :, :]
                     image_init1 = Image.fromarray((image_init * 255).astype(np.uint8), mode = "RGB")
                     image_mask = np.array(mask_image.convert("L")).astype(np.float32) / 255.0
@@ -510,15 +522,33 @@ class Model_VSN(BaseModel):
                     i = image_id + 1
                     masksrc = "../dataset/valAGE-Set-Mask/"
                     mask_image = load_image(masksrc + str(i).zfill(4) + ".png").convert("RGB")
-                    mask_image = mask_image.resize((512, 512))
+                    # ----- VN START -----
+                    image_size = global_variables.TEST_CONFIG['datasets']['TD']['image_size']
+                    mask_image = mask_image.resize((image_size, image_size))
+                    # ----- ORIGINAL -----
+                    # mask_image = mask_image.resize((512, 512))
+                    # ----- VN END -----
                     h, w = mask_image.size
                     
                     image = image_batch[j, :, :, :]
                     image_init = Image.fromarray((image * 255).astype(np.uint8), mode = "RGB")
+                    # ----- VN START -----
+                    image_size = global_variables.TEST_CONFIG['datasets']['TD']['image_size']
                     image_inpaint = self.pipe_sdxl(
-                        prompt=prompt, image=image_init, mask_image=mask_image, num_inference_steps=50, strength=0.80, target_size=(512, 512)
+                        prompt=prompt, image=image_init, mask_image=mask_image, num_inference_steps=50, strength=0.80, target_size=(image_size, image_size)
                     ).images[0]
-                    image_inpaint = image_inpaint.resize((512, 512))
+                    # ----- ORIGINAL -----
+                    # image_inpaint = self.pipe_sdxl(
+                    #     prompt=prompt, image=image_init, mask_image=mask_image, num_inference_steps=50, strength=0.80, target_size=(512, 512)
+                    # ).images[0]
+                    # ----- VN END -----
+                    
+                    # ----- VN START -----
+                    image_size = global_variables.TEST_CONFIG['datasets']['TD']['image_size']
+                    image_inpaint = image_inpaint.resize((image_size, image_size))
+                    # ----- ORIGINAL -----
+                    # image_inpaint = image_inpaint.resize((512, 512))
+                    # ----- VN END -----
                     image_inpaint = np.array(image_inpaint) / 255.
                     mask_image = np.array(mask_image) / 255.
                     mask_image = mask_image.astype(np.uint8)
@@ -541,11 +571,22 @@ class Model_VSN(BaseModel):
                     i = image_id + 1
                     masksrc = "../dataset/valAGE-Set-Mask/" + str(i).zfill(4) + ".png"
                     mask_image = Image.open(masksrc).convert("RGB")
-                    mask_image = mask_image.resize((256, 256))
+                    # ----- VN START -----
+                    image_size = global_variables.TEST_CONFIG['datasets']['TD']['image_size']
+                    mask_image = mask_image.resize((image_size, image_size))
+                    # ----- ORIGINAL -----
+                    # mask_image = mask_image.resize((512, 512))
+                    # ----- VN END -----
                     mask_image = Image.fromarray(255 - np.array(mask_image))
                     image = image_batch[j, :, :, :]
                     original_image = Image.fromarray((image * 255).astype(np.uint8), mode = "RGB")
-                    original_image = original_image.resize((256, 256))
+                    # ----- VN START -----
+                    image_size = global_variables.TEST_CONFIG['datasets']['TD']['image_size']
+                    original_image = original_image.resize((image_size, image_size))
+                    # ----- ORIGINAL -----
+                    # original_image = original_image.resize((256, 256))
+                    # ----- VN END -----
+                    
                     output = self.pipe_repaint(
                         image=original_image,
                         mask_image=mask_image,
@@ -556,9 +597,19 @@ class Model_VSN(BaseModel):
                         generator=generator,
                     )
                     image_inpaint = output.images[0]
-                    image_inpaint = image_inpaint.resize((512, 512))
+                    # ----- VN START -----
+                    image_size = global_variables.TEST_CONFIG['datasets']['TD']['image_size']
+                    image_inpaint = image_inpaint.resize((image_size, image_size))
+                    # ----- ORIGINAL -----
+                    # image_inpaint = image_inpaint.resize((512, 512))
+                    # ----- VN END -----
                     image_inpaint = np.array(image_inpaint) / 255.
-                    mask_image = mask_image.resize((512, 512))
+                    # ----- VN START -----
+                    image_size = global_variables.TEST_CONFIG['datasets']['TD']['image_size']
+                    mask_image = mask_image.resize((image_size, image_size))
+                    # ----- ORIGINAL -----
+                    # mask_image = mask_image.resize((512, 512))
+                    # ----- VN END -----
                     mask_image = np.array(mask_image) / 255.
                     mask_image = mask_image.astype(np.uint8)
                     image_fuse = image * mask_image + image_inpaint * (1 - mask_image)
@@ -696,6 +747,9 @@ class Model_VSN(BaseModel):
             self.fake_H_h = torch.clamp(torch.stack(fake_H_h, dim=2),0,1)
 
         self.forw_L = torch.clamp(torch.stack(forw_L, dim=1),0,1)
+        # ----- VN START -----
+        self.forw_Con = torch.clamp(torch.stack(forw_Con, dim=1),0,1)
+        # ----- VN END -----
         remesg = torch.clamp(torch.stack(recmsglist, dim=0),-0.5,0.5)
 
         if self.opt['hide']:
@@ -800,6 +854,9 @@ class Model_VSN(BaseModel):
             out_dict['SR_h'] = [image.squeeze(0) for image in SR_h]
         
         out_dict['LR'] = self.forw_L.detach()[0].float().cpu()
+        # ----- VN START -----
+        out_dict['Con'] = self.forw_Con.detach()[0].float().cpu()
+        # ----- VN END -----
         out_dict['GT'] = self.real_H[:, center - intval:center + intval + 1].detach()[0].float().cpu()
         out_dict['message'] = self.message
         out_dict['recmessage'] = self.recmessage
