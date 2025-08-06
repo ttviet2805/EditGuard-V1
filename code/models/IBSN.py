@@ -8,6 +8,9 @@ from torch.nn.parallel import DataParallel, DistributedDataParallel
 # ----- VN START -----
 from utils.motion_blur import random_motion_blur
 import torchvision.transforms as T
+from thop import profile
+from thop import clever_format
+import copy
 # ----- VN END -----
 
 import models.networks as networks
@@ -62,6 +65,23 @@ class Model_VSN(BaseModel):
         self.idxx = 0
 
         self.netG = networks.define_G_v2(opt).to(self.device)
+        
+        # Create copy for FLOPs calculation
+        model_for_profile = copy.deepcopy(self.netG.module if isinstance(self.netG, torch.nn.DataParallel) else self.netG)
+        model_for_profile.eval().cuda()
+
+        # Prepare dummy inputs
+        dummy_host = torch.randn(1, 3, 512, 512).cuda()
+        dummy_secret = torch.randn(1, 3, 512, 512).cuda()
+        x = dwt(dummy_host)      # [1, 12, 256, 256]
+        x_h = dwt(dummy_secret)  # [1, 12, 256, 256]
+        dummy_message = torch.randn(1, self.opt['message_length']).cuda()
+
+        # Compute FLOPs
+        flops, params = profile(model_for_profile, inputs=(x, x_h, dummy_message))
+        flops, params = clever_format([flops, params], "%.3f")
+        print(f"FLOPs: {flops}, Params: {params}")
+
         if opt['dist']:
             self.netG = DistributedDataParallel(self.netG, device_ids=[torch.cuda.current_device()])
         else:
@@ -422,7 +442,7 @@ class Model_VSN(BaseModel):
             
             # ----- VN START -----
             end_embed = time.perf_counter() - start_embed
-            print(f"Embed time: {end_embed:.2f} seconds")
+            print(f"Embed time: {end_embed:.6f} seconds")
             # ----- VN END -----
 
             if add_sdinpaint:
@@ -717,7 +737,7 @@ class Model_VSN(BaseModel):
                 out_x, out_x_h, out_z, recmessage = self.netG(x=y, rev=True)
                 # ----- VN START -----
                 end_extract = time.perf_counter() - start_extract
-                print(f"Extract time: {end_extract:.2f} seconds")
+                print(f"Extract time: {end_extract:.6f} seconds")
                 # ----- VN END -----
                 out_x = iwt(out_x)
 
@@ -736,7 +756,7 @@ class Model_VSN(BaseModel):
                 recmessage = self.netG(x=y, rev=True)
                 # ----- VN START -----
                 end_extract = time.perf_counter() - start_extract
-                print(f"Extract time: {end_extract:.2f} seconds")
+                print(f"Extract time: {end_extract:.6f} seconds")
                 # ----- VN END -----
                 forw_L.append(y_forw)
                 recmsglist.append(recmessage)
