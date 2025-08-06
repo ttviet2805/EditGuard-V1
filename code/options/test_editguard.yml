@@ -15,7 +15,7 @@ noisesigma: 1
 addjpeg: False
 jpegfactor: 70
 addpossion: False
-# ---- VN START -----
+# ----- VN START -----
 addblur: False
 addcolorjitter: False
 # ----- VN END -----
@@ -23,6 +23,9 @@ sdinpaint: False
 controlnetinpaint: False
 sdxl: False
 repaint: False
+# ----- VN START -----
+addklvae8: False
+# ----- VN END -----
 
 hide: True
 hidebit: True

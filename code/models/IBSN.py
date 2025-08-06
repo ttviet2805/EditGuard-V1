@@ -380,6 +380,9 @@ class Model_VSN(BaseModel):
         add_controlnet = self.opt['controlnetinpaint']
         add_sdxl = self.opt['sdxl']
         add_repaint = self.opt['repaint']
+        # ----- VN START -----
+        add_klvae8 = self.opt['addklvae8']
+        # ----- VN END -----
         degrade_shuffle = self.opt['degrade_shuffle']
 
         with torch.no_grad():
@@ -636,6 +639,23 @@ class Model_VSN(BaseModel):
                     forw_list.append(torch.from_numpy(image_fuse).permute(2, 0, 1))
                 
                 y_forw = torch.stack(forw_list, dim=0).float().cuda()
+
+            # ----- VN START -----
+            if add_klvae8:
+                with torch.enable_grad():
+                    print("Go to klvae8")
+                    from models.adversarial.embedding import adv_emb_attack_2
+                    y_forw = adv_emb_attack_2(
+                        images=y_forw,
+                        encoder="klvae8",
+                        strength=2,
+                        device=torch.device("cuda:0"),
+                        eps_factor=1/255,
+                        alpha_factor=0.05,
+                        n_steps=40,
+                    )
+            # ----- VN END -----
+
 
             if mode == "validation":
                 if degradation == "JPEG":
