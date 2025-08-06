@@ -71,8 +71,8 @@ class Model_VSN(BaseModel):
         model_for_profile.eval().cuda()
 
         # Prepare dummy inputs
-        dummy_host = torch.randn(1, 3, 512, 512).cuda()
-        dummy_secret = torch.randn(1, 3, 512, 512).cuda()
+        dummy_host = torch.randn(1, 3, 128, 128).cuda()
+        dummy_secret = torch.randn(1, 3, 128, 128).cuda()
         x = dwt(dummy_host)      # [1, 12, 256, 256]
         x_h = dwt(dummy_secret)  # [1, 12, 256, 256]
         dummy_message = torch.randn(1, self.opt['message_length']).cuda()
@@ -382,6 +382,9 @@ class Model_VSN(BaseModel):
         add_repaint = self.opt['repaint']
         # ----- VN START -----
         add_klvae8 = self.opt['addklvae8']
+        add_clip = self.opt['addclip']
+        add_resnet = self.opt['addresnet']
+        add_klvae16 = self.opt['addklvae16']
         # ----- VN END -----
         degrade_shuffle = self.opt['degrade_shuffle']
 
@@ -648,6 +651,48 @@ class Model_VSN(BaseModel):
                     y_forw = adv_emb_attack_2(
                         images=y_forw,
                         encoder="klvae8",
+                        strength=2,
+                        device=torch.device("cuda:0"),
+                        eps_factor=1/255,
+                        alpha_factor=0.05,
+                        n_steps=40,
+                    )
+
+            if add_clip:
+                with torch.enable_grad():
+                    print("Go to CLIP")
+                    from models.adversarial.embedding import adv_emb_attack_2
+                    y_forw = adv_emb_attack_2(
+                        images=y_forw,
+                        encoder="clip",
+                        strength=2,
+                        device=torch.device("cuda:0"),
+                        eps_factor=1/255,
+                        alpha_factor=0.05,
+                        n_steps=40,
+                    )
+
+            if add_resnet:
+                with torch.enable_grad():
+                    print("Go to RESNET")
+                    from models.adversarial.embedding import adv_emb_attack_2
+                    y_forw = adv_emb_attack_2(
+                        images=y_forw,
+                        encoder="resnet18",
+                        strength=2,
+                        device=torch.device("cuda:0"),
+                        eps_factor=1/255,
+                        alpha_factor=0.05,
+                        n_steps=40,
+                    )
+
+            if add_klvae16:
+                with torch.enable_grad():
+                    print("Go to klvae16")
+                    from models.adversarial.embedding import adv_emb_attack_2
+                    y_forw = adv_emb_attack_2(
+                        images=y_forw,
+                        encoder="klvae16",
                         strength=2,
                         device=torch.device("cuda:0"),
                         eps_factor=1/255,
