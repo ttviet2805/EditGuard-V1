@@ -962,21 +962,21 @@ class Model_VSN(BaseModel):
         
         # ========================================================================================================================================
         # 1. Get the raw model (unwrap from DataParallel if needed)
-        # model_for_profile = copy.deepcopy(self.netG.module if isinstance(self.netG, torch.nn.DataParallel) else self.netG)
-        # model_for_profile.eval().cuda()  # Use CPU for compatibility
+        model_for_profile = copy.deepcopy(self.netG.module if isinstance(self.netG, torch.nn.DataParallel) else self.netG)
+        model_for_profile.eval().cuda()  # Use CPU for compatibility
 
-        # # 2. Create dummy input: shape = [1, 3, 512, 512] (from your latest info)
-        # dummy_input = torch.randn(1, 3, 512, 512)
+        # 2. Create dummy input: shape = [1, 3, 512, 512] (from your latest info)
+        dummy_input = torch.randn(1, 3, 512, 512)
 
-        # # 3. Compute FLOPs with rev=True
-        # flops, params = profile(
-        #     model_for_profile,
-        #     inputs=(dummy_input, None, None, True),  # (x, x_h, message, rev=True)
-        #     verbose=False
-        # )
-        # flops, params = clever_format([flops, params], "%.3f")
+        # 3. Compute FLOPs with rev=True
+        flops, params = profile(
+            model_for_profile,
+            inputs=(dummy_input, None, None, True),  # (x, x_h, message, rev=True)
+            verbose=False
+        )
+        flops, params = clever_format([flops, params], "%.3f")
 
-        # print(f"[FLOPs/Params Info] Reverse Path FLOPs: {flops}, Params: {params}")
+        print(f"[FLOPs/Params Info] Reverse Path FLOPs: {flops}, Params: {params}")
         # ----- VN END -----
 
     def load(self):
