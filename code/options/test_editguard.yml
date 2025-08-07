@@ -35,7 +35,7 @@ hidebit: True
 degrade_shuffle: False
 prompt: True
 prompt_len: 3
-message_length: 30 # IMPORTANT: Config this before training
+message_length: 64 # IMPORTANT: Config this before training
 bitrecord: False
 
 mode: image
@@ -64,9 +64,9 @@ datasets:
     # ----- VN END -----
 
     # ----- VN START -----
-    # txt_path:  ../dataset/sep_testlist-5-eles.txt
+    txt_path:  ../dataset/sep_testlist-5-eles.txt
     # txt_path:  ../dataset/sep_testlist-50-eles.txt
-    txt_path:  ../dataset/sep_testlist-100-eles.txt
+    # txt_path:  ../dataset/sep_testlist-100-eles.txt
     # ----- ORIGINAL -----
     # txt_path:  ../dataset/sep_testlist.txt
     # ----- VN END -----
