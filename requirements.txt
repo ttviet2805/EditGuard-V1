@@ -10,4 +10,4 @@ torchvision
 torchaudio
 pyyaml
 kornia
-diffusers
+thop
