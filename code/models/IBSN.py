@@ -401,6 +401,14 @@ class Model_VSN(BaseModel):
                     file.write(bit_string + "\n")
 
             # ----- VN START -----
+            # Start end-to-end pipeline timing
+            if torch.cuda.is_available():
+                torch.cuda.synchronize()
+            pipeline_start = time.perf_counter()
+
+            # Embed timing (synchronized)
+            if torch.cuda.is_available():
+                torch.cuda.synchronize()
             start_embed = time.perf_counter()
             # ----- VN END -----
 
@@ -414,8 +422,18 @@ class Model_VSN(BaseModel):
                 y_forw = self.output.squeeze(1)
 
             # ----- VN START -----
-            end_embed = time.perf_counter() - start_embed
-            print(f"Embed time: {end_embed:.2f} seconds")
+            if torch.cuda.is_available():
+                torch.cuda.synchronize()
+            embed_time_batch = time.perf_counter() - start_embed
+            embed_time_per_image = embed_time_batch / max(1, b)
+            print(f"Embed time (per image): {embed_time_per_image:.6f}s")
+            # ----- VN END -----
+
+            # ----- VN START -----
+            # Time the entire degradation/noise stage (includes inpainting/JPEG/noise/blur branches)
+            if torch.cuda.is_available():
+                torch.cuda.synchronize()
+            noise_start = time.perf_counter()
             # ----- VN END -----
 
             if add_sdinpaint:
@@ -650,7 +668,15 @@ class Model_VSN(BaseModel):
                             for img in y_forw
                         ]).to(y_forw.device)
                     # ----- VN END -----
-                                        
+            # ----- VN START -----
+            if torch.cuda.is_available():
+                torch.cuda.synchronize()
+            noise_time_batch = time.perf_counter() - noise_start
+            noise_time_per_image = noise_time_batch / max(1, b)
+            print(f"Noise/Degradation time (per image): {noise_time_per_image:.6f}s")
+            # No explicit disk I/O conversions in this pipeline
+            io_time_per_image = 0.0
+            # ----- VN END -----
 
             # backward upscaling
             if self.opt['hide']:
@@ -659,14 +685,19 @@ class Model_VSN(BaseModel):
                 y = y_forw
 
             # ----- VN START -----
+            if torch.cuda.is_available():
+                torch.cuda.synchronize()
             start_extract = time.perf_counter()
             # ----- VN END -----
 
             if self.mode == "image":
                 out_x, out_x_h, out_z, recmessage = self.netG(x=y, rev=True)
                 # ----- VN START -----
-                end_extract = time.perf_counter() - start_extract
-                print(f"Extract time: {end_extract:.2f} seconds")
+                if torch.cuda.is_available():
+                    torch.cuda.synchronize()
+                extract_time_batch = time.perf_counter() - start_extract
+                extract_time_per_image = extract_time_batch / max(1, b)
+                print(f"Extract time (per image): {extract_time_per_image:.6f}s")
                 # ----- VN END -----
                 out_x = iwt(out_x)
 
@@ -684,9 +715,30 @@ class Model_VSN(BaseModel):
             elif self.mode == "bit":
                 recmessage = self.netG(x=y, rev=True)
                 # ----- VN START -----
-                end_extract = time.perf_counter() - start_extract
-                print(f"Extract time: {end_extract:.2f} seconds")
+                if torch.cuda.is_available():
+                    torch.cuda.synchronize()
+                extract_time_batch = time.perf_counter() - start_extract
+                extract_time_per_image = extract_time_batch / max(1, b)
+                print(f"Extract time (per image): {extract_time_per_image:.6f}s")
                 # ----- VN END -----
+
+            # ----- VN START -----
+            # End-to-end pipeline timing (embed + degradation + extract)
+            if torch.cuda.is_available():
+                torch.cuda.synchronize()
+            pipeline_time_batch = time.perf_counter() - pipeline_start
+            pipeline_time_per_image = pipeline_time_batch / max(1, b)
+            print(f"Pipeline time (per image): {pipeline_time_per_image:.6f}s")
+            # Optional throughput summary
+            if embed_time_per_image > 0:
+                print(f"Images/sec (Embed): {1.0 / embed_time_per_image:.3f}")
+            if noise_time_per_image > 0:
+                print(f"Images/sec (Noise): {1.0 / noise_time_per_image:.3f}")
+            if extract_time_per_image > 0:
+                print(f"Images/sec (Extract): {1.0 / extract_time_per_image:.3f}")
+            if pipeline_time_per_image > 0:
+                print(f"Images/sec (Pipeline): {1.0 / pipeline_time_per_image:.3f}")
+            # ----- VN END -----
                 forw_L.append(y_forw)
                 recmsglist.append(recmessage)
                 msglist.append(message)
