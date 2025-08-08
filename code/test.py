@@ -130,6 +130,7 @@ def main():
     avg_psnr = 0.0
     # ----- VN START -----
     avg_psnr_con = 0.0
+    avg_ssim_con = 0.0
     # ----- VN END -----
     avg_psnr_h = [0.0]*opt['num_image']
     avg_psnr_lr = 0.0
@@ -216,11 +217,16 @@ def main():
             # ----- VN START -----
             psnr_con = cal_pnsr(con_img, gt_img)
             avg_psnr_con += psnr_con
-             # ----- VN END -----
+            ssim_con = util.calculate_ssim(con_img, gt_img)
+            avg_ssim_con += ssim_con
+            print("PSNR:", psnr_con)
+            print("SSIM:", ssim_con)
+            # ----- VN END -----
 
     avg_psnr = avg_psnr / idx
     # ----- VN START -----
     avg_psnr_con = avg_psnr_con / idx
+    avg_ssim_con = avg_ssim_con / idx
     # ----- VN END -----
     avg_biterr = sum(biterr) / len(biterr)
     # print(get_min_avg_and_indices(biterr))
@@ -237,6 +243,7 @@ def main():
     b_a = 1 - avg_biterr
     print(f"# Bit Accuracy: {b_a * 100:.2f}%")
     print('# PSNR_Con: {:.4e}'.format(avg_psnr_con))
+    print('# SSIM_Con: {:.4f}'.format(avg_ssim_con))
     # ----- ORIGINAL -----
     # print('# Validation # PSNR_Cover: {:.4e}, PSNR_Secret: {:s}, PSNR_Stego: {:.4e},  Bit_Error: {:.4e}'.format(avg_psnr, res_psnr_h, avg_psnr_lr, avg_biterr))
     # ----- VN END -----
