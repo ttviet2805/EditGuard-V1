@@ -38,7 +38,7 @@ def load_image(image, message = None):
     # print(img_GT)
     img_GT = img_GT[:, :, [2, 1, 0]]
     img_GT = torch.from_numpy(np.ascontiguousarray(np.transpose(img_GT, (2, 0, 1)))).float().unsqueeze(0)
-    img_GT = torch.nn.functional.interpolate(img_GT, size=(512, 512), mode='nearest', align_corners=None)
+    # img_GT = torch.nn.functional.interpolate(img_GT, size=(512, 512), mode='nearest', align_corners=None)
     img_GT = img_GT.unsqueeze(0)
 
     _, T, C, W, H = img_GT.shape

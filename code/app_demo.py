@@ -83,13 +83,13 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
                     gr.Markdown("# 1. Embed Watermark")
                     with gr.Row():
                         with gr.Column():
-                            image_input = gr.Image(sources='upload', label="Original Image", interactive=True, type="numpy", value=default_example[0])
+                            image_input = gr.Image(sources='upload', label="Original Image", interactive=True, type="numpy")
                             with gr.Row():
                                 bit_input = gr.Textbox(label="Enter Copyright Watermark (64-bit bitstring)", placeholder="Enter here...")
                                 rand_bit = gr.Button("🎲 Generate Random Watermark")
                             hiding_button = gr.Button("Embed Watermark")
                         with gr.Column():
-                            image_watermark = gr.Image(sources="upload", label="Image with Watermark", interactive=True, type="numpy")
+                            image_watermark = gr.Image(label="Image with Watermark", interactive=False, type="numpy")
 
 
                 with gr.Group():

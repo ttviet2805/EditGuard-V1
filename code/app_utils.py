@@ -6,7 +6,7 @@ def img_to_base64(filepath):
     with open(filepath, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
     
-def rand(num_bits=64):
+def rand(num_bits=30):
     print("Random input bit message")
     random_str = ''.join([str(random.randint(0, 1)) for _ in range(num_bits)])
     return random_str

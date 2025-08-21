@@ -856,6 +856,7 @@ class Model_VSN(BaseModel):
             y_forw = container
 
             result = torch.clamp(y_forw,0,1)
+            print("Container shape: ", result.shape)
 
             lr_img = util.tensor2img(result)
 
