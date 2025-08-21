@@ -5,6 +5,7 @@ from test_gradio import load_image
 import torch
 import options.options as option
 from models import create_model as create_model_editguard
+from app_utils import calculate_similarity_percentage
 
 
 def image_model_select(ckp_index=0):

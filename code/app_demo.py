@@ -3,6 +3,23 @@ import gradio as gr
 import app_utils
 import backend
 
+# ----- VN START -----
+import sys
+import logging
+
+# Open the file with UTF-8 encoding to support emojis and Unicode
+logfile = open("app_console.log", "w", encoding="utf-8", buffering=1)
+
+sys.stdout = logfile
+sys.stderr = logfile
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    stream=logfile
+)
+# ----- VN END -----
+
 
 # Examples
 examples = [
@@ -105,10 +122,12 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
                     inputs=[image_input],
                 )
 
-
+                # Loading model
                 model_list.change(
                     backend.image_model_select, inputs = [model_list], outputs=[model]
                 )
+
+                # Embed Watermark
                 hiding_button.click(
                     backend.hiding, inputs=[image_input, bit_input, model], outputs=[image_watermark, image_edit]
                 )
@@ -116,11 +135,12 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
                     app_utils.rand, inputs=[], outputs=[bit_input]
                 )
 
-
+                # Tamper Image
                 inpainting_button.click(
                     backend.ImageEdit, inputs = [image_edit, text_prompt, inpainting_model_list], outputs=[image_edited, image_edited_1, save_inpainted_image]
                 )
 
+                # Extract Watermark
                 revealing_button.click(
                     backend.revealing, inputs=[image_edited_1, bit_input, model_list, model], outputs=[edit_mask, bit_output, acc_output]
                 )
