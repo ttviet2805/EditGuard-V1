@@ -9,6 +9,12 @@ from app_utils import calculate_similarity_percentage
 
 
 def image_model_select(ckp_index=0):
+    print("Initialize model for watermarking, model index: ", ckp_index)
+    
+    if ckp_index != 0:
+        print("Invalid model")
+        return None
+    
     # options
     opt = option.parse("options/test_editguard.yml", is_train=True)
     # distributed training settings
@@ -32,9 +38,7 @@ def image_model_select(ckp_index=0):
     # create model
 
     model = create_model_editguard(opt)
-
-    if ckp_index == 0:
-        model_pth = '../checkpoints/16000_G.pth'
+    model_pth = '../checkpoints/16000_G.pth'
     print(model_pth)
     model.load_test(model_pth)
     return model
@@ -57,12 +61,8 @@ def ImageEdit(img, prompt, model_index):
     received_image = image_editing(image, mask, prompt)
     return received_image, received_image, received_image
 
-def revealing(image_edited, input_bit, model_list, model):
-
-    if model_list==0:
-        number = 0.2
-    else:
-        number = 0.2
+def revealing(image_edited, input_bit, model):
+    number = 0.2
 
     container_data = load_image(image_edited) ## load tampered images
     model.feed_data(container_data)

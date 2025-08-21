@@ -57,13 +57,15 @@ css = "h1 { text-align: center } .about { text-align: justify; padding-left: 10%
 
 with gr.Blocks(css=css, title="EditGuard") as demo:
     gr.HTML(html_content)
-    model = gr.State(value = None)
     save_h = gr.State(value = None)
     save_w = gr.State(value = None)
     sam_global_points = gr.State([])
     sam_global_point_label = gr.State([])
     sam_original_image = gr.State(value=None)
     sam_mask = gr.State(value=None)
+    
+    # ===================================== DATA INIT =====================================
+    model = gr.State(value = backend.image_model_select(0))
 
     with gr.Tabs():
         with gr.TabItem('Multipurpose Forensic Watermark'):
@@ -77,9 +79,6 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
             gr.Markdown(DESCRIPTION)
             save_inpainted_image = gr.State(value=None)
             with gr.Column():
-                with gr.Row():
-                    model_list = gr.Dropdown(label="Select Model", choices=["Model 1"], type = 'index')
-                    clear_button = gr.Button("Clear All")
                 with gr.Group():
                     gr.Markdown("# 1. Embed Watermark")
                     with gr.Row():
@@ -122,11 +121,6 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
                     inputs=[image_input],
                 )
 
-                # Loading model
-                model_list.change(
-                    backend.image_model_select, inputs = [model_list], outputs=[model]
-                )
-
                 # Embed Watermark
                 hiding_button.click(
                     backend.hiding, inputs=[image_input, bit_input, model], outputs=[image_watermark, image_edit]
@@ -142,7 +136,7 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
 
                 # Extract Watermark
                 revealing_button.click(
-                    backend.revealing, inputs=[image_edited_1, bit_input, model_list, model], outputs=[edit_mask, bit_output, acc_output]
+                    backend.revealing, inputs=[image_edited_1, bit_input, model], outputs=[edit_mask, bit_output, acc_output]
                 )
 
 # Deploy server
