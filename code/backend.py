@@ -44,7 +44,10 @@ def image_model_select(ckp_index=0):
     return model
 
 def hiding(image_input, bit_input, model):
-
+    print("========== Image Embedding ==========")
+    print("Input image shape: ", image_input.shape)
+    print("Message", bit_input)
+    
     message = np.array([int(bit_input[i:i+1]) for i in range(0, len(bit_input), 1)])
     message = message - 0.5
     val_data = load_image(image_input, message)
