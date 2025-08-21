@@ -64,7 +64,7 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
     sam_original_image = gr.State(value=None)
     sam_mask = gr.State(value=None)
     
-    # ===================================== DATA INIT =====================================
+    # =========================================================== DATA INIT ===========================================================
     model = gr.State(value = backend.image_model_select(0))
 
     with gr.Tabs():
