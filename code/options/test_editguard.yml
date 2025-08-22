@@ -35,7 +35,7 @@ hidebit: True
 degrade_shuffle: False
 prompt: True
 prompt_len: 3
-message_length: 64 # IMPORTANT: Config this before training
+message_length: 30 # IMPORTANT: Config this before training
 bitrecord: False
 
 mode: image
@@ -51,7 +51,7 @@ result_path: "results/ori_result.txt"
 datasets:
   TD:
     # ----- VN START -----
-    image_size: 512 # IMPORTANT: Config this before training
+    image_size: 128 # IMPORTANT: Config this before training
     # ----- VN END -----
     num_image: 1
     name: AGE-Set
