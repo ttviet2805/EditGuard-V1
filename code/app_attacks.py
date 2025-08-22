@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 from utils.JPEG import DiffJPEG
-from utils.util import tensor2img
+from utils.util import tensor2img, save_img
 from PIL import Image
 
 
@@ -36,15 +36,14 @@ def innoguard_attack(image_numpy, attack_type):
     print("Attack type: ", attack_type)
     print("Image type, shape", type(image_numpy), image_numpy.shape)
     
-    image_numpy = image_numpy.astype(np.float32)
-    image_numpy = torch.from_numpy(np.transpose(image_numpy, (2, 0, 1)))
-    image_tensor = image_numpy.unsqueeze(0)
+    image_numpy = np.ascontiguousarray(image_numpy)
+    image_tensor = torch.from_numpy(image_numpy).permute(2, 0, 1).float() / 255.0
+    image_tensor = image_tensor.unsqueeze(0)
     
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
     y_forw = image_tensor.to(device)
-    
     print("y_forw type, shape", type(y_forw), y_forw.shape, "device:", y_forw.device)
-    
+
     with torch.no_grad():
         if (attack_type == 0): # JPEG Compression
             NL = 70
@@ -63,9 +62,13 @@ def innoguard_attack(image_numpy, attack_type):
         result = torch.clamp(y_forw,0,1)
         lr_img = tensor2img(result)
 
-    print("LR image type, shape: ", type(lr_img), lr_img.shape)
-
+    print("Attacked image type, shape: ", type(lr_img), lr_img.shape)
     return lr_img, lr_img
 
-tmp = "/workspace/128x128_image_1.png"
-innoguard_attack(np.array(Image.open(tmp).convert('RGB')), 0)
+# tmp = "/workspace/128x128_image_1.png"
+# img = np.array(Image.open(tmp).convert('RGB'))
+# Image.fromarray(img).save("/workspace/ori_image.png")
+
+# attacked_img, _ = innoguard_attack(img, 0)
+
+# save_img(attacked_img, "/workspace/attacked_image.png")

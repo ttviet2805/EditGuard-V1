@@ -69,7 +69,7 @@ def ImageEdit(img, prompt, model_index):
 
 def revealing(image_edited, input_bit, model):
     print("========== Image Extracting ==========")
-    print("Input image type, shape: ", type(image_edited), image_edited.shape)
+    print("Extracted image type, shape: ", type(image_edited), image_edited.shape)
     print("Message: ", input_bit)
     number = 0.2
 
