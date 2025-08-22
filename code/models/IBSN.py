@@ -856,7 +856,6 @@ class Model_VSN(BaseModel):
             y_forw = container
 
             result = torch.clamp(y_forw,0,1)
-            print("Container shape: ", result.shape)
 
             lr_img = util.tensor2img(result)
 
@@ -880,30 +879,33 @@ class Model_VSN(BaseModel):
             y_forw = self.output.squeeze(1)
 
             y = self.Quantization(y_forw)
+            
+            recmessage = self.netG(x=y, rev=True)
 
-            out_x, out_x_h, out_z, recmessage = self.netG(x=y, rev=True)
-            out_x = iwt(out_x)
+            # out_x, out_x_h, out_z, recmessage = self.netG(x=y, rev=True)
+            # out_x = iwt(out_x)
 
-            out_x_h = [iwt(out_x_h_i) for out_x_h_i in out_x_h]
-            out_x = out_x.reshape(-1, self.gop, 3, h, w)
-            out_x_h = torch.stack(out_x_h, dim=1)
-            out_x_h = out_x_h.reshape(-1, 1, self.gop, 3, h, w)
+            # out_x_h = [iwt(out_x_h_i) for out_x_h_i in out_x_h]
+            # out_x = out_x.reshape(-1, self.gop, 3, h, w)
+            # out_x_h = torch.stack(out_x_h, dim=1)
+            # out_x_h = out_x_h.reshape(-1, 1, self.gop, 3, h, w)
 
-            rec_loc = out_x_h[:,:, self.gop//2]
+            # rec_loc = out_x_h[:,:, self.gop//2]
             # from PIL import Image
             # tmp = util.tensor2img(rec_loc)
             # save
-            residual = torch.abs(template - rec_loc)
-            binary_residual = (residual > number).float()
-            residual = util.tensor2img(binary_residual)
-            mask = np.sum(residual, axis=2)
+            # residual = torch.abs(template - rec_loc)
+            # binary_residual = (residual > number).float()
+            # residual = util.tensor2img(binary_residual)
+            # mask = np.sum(residual, axis=2)
             # print(mask)
 
             remesg = torch.clamp(recmessage,-0.5,0.5)
             remesg[remesg > 0] = 1
             remesg[remesg <= 0] = 0
 
-            return mask, remesg
+            # return mask, remesg
+            return remesg
         
     def get_current_log(self):
         return self.log_dict

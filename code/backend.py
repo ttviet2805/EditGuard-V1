@@ -6,14 +6,14 @@ import torch
 import options.options as option
 from models import create_model as create_model_editguard
 from app_utils import calculate_similarity_percentage
+from utils.util import calculate_psnr
 
 
 def image_model_select(ckp_index=0):
     print("Initialize model for watermarking, model index: ", ckp_index)
     
     if ckp_index != 0:
-        print("Invalid model")
-        return None
+        raise ValueError("error message")
     
     # options
     opt = option.parse("options/test_editguard.yml", is_train=True)
@@ -45,7 +45,7 @@ def image_model_select(ckp_index=0):
 
 def hiding(image_input, bit_input, model):
     print("========== Image Embedding ==========")
-    print("Input image shape: ", image_input.shape)
+    print("Input image type, shape: ", type(image_input), image_input.shape)
     print("Message", bit_input)
     
     message = np.array([int(bit_input[i:i+1]) for i in range(0, len(bit_input), 1)])
@@ -53,6 +53,9 @@ def hiding(image_input, bit_input, model):
     val_data = load_image(image_input, message)
     model.feed_data(val_data)
     container = model.image_hiding()
+    
+    print("PSNR: ", calculate_psnr(image_input, container))
+    print("Container type, shape: ", type(container), container.shape)
 
     from PIL import Image
     image = Image.fromarray(container)
@@ -65,13 +68,17 @@ def ImageEdit(img, prompt, model_index):
     return received_image, received_image, received_image
 
 def revealing(image_edited, input_bit, model):
+    print("========== Image Extracting ==========")
+    print("Input image type, shape: ", type(image_edited), image_edited.shape)
+    print("Message: ", input_bit)
     number = 0.2
 
     container_data = load_image(image_edited) ## load tampered images
     model.feed_data(container_data)
-    mask, remesg = model.image_recovery(number)
-    mask = Image.fromarray(mask.astype(np.uint8))
+    remesg = model.image_recovery(number)
     remesg = remesg.cpu().numpy()[0]
     remesg = ''.join([str(int(x)) for x in remesg])
     bit_acc = calculate_similarity_percentage(input_bit, remesg)
-    return mask, remesg, bit_acc
+    print("Receive message: ", remesg)
+    print("Bit Accuracy: ", bit_acc)
+    return remesg, bit_acc

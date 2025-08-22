@@ -2,6 +2,7 @@
 import gradio as gr
 import app_utils
 import backend
+import app_attacks
 
 # ----- VN START -----
 import sys
@@ -96,12 +97,12 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
                     gr.Markdown("# 2. Tamper the Image")
                     with gr.Row():
                         with gr.Column():
-                            image_edit = gr.Image(sources='upload',image_mode="sketch", label="Select Tampered Region", interactive=True, type="numpy")
-                            inpainting_model_list = gr.Dropdown(label="Select Tampering Model", choices=["Model 1: SD_inpainting"], type = 'index')
-                            text_prompt = gr.Textbox(label="Tampering Prompt")
-                            inpainting_button = gr.Button("Tamper Image")
+                            image_edit = gr.Image(sources='upload', label="Select Tampered Region", interactive=True, type="numpy")
+                            attacking_model_list = gr.Dropdown(label="Select Tampering Model", choices=["Model 1: JPEG 70",  "Model 2: Gaussian 10", "Model 3: SD_inpainting"], type = 'index')
+                            # text_prompt = gr.Textbox(label="Tampering Prompt")
+                            attacking_button = gr.Button("Tamper Image")
                         with gr.Column():
-                            image_edited = gr.Image(sources="upload", label="Tampered Result", interactive=True, type="numpy")
+                            image_edited = gr.Image(label="Tampered Result", interactive=True, type="numpy")
                 
 
                 with gr.Group():
@@ -130,13 +131,13 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
                 )
 
                 # Tamper Image
-                inpainting_button.click(
-                    backend.ImageEdit, inputs = [image_edit, text_prompt, inpainting_model_list], outputs=[image_edited, image_edited_1, save_inpainted_image]
+                attacking_button.click(
+                    app_attacks.innoguard_attack, inputs = [image_edit, attacking_model_list], outputs=[image_edited, image_edited_1]
                 )
 
                 # Extract Watermark
                 revealing_button.click(
-                    backend.revealing, inputs=[image_edited_1, bit_input, model], outputs=[edit_mask, bit_output, acc_output]
+                    backend.revealing, inputs=[image_edited_1, bit_input, model], outputs=[bit_output, acc_output]
                 )
 
 # Deploy server
