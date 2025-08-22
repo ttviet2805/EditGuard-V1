@@ -173,7 +173,8 @@ class Model_VSN(BaseModel):
     def feed_data(self, data):
         self.ref_L = data['LQ'].to(self.device)  
         self.real_H = data['GT'].to(self.device)
-        self.mes = data['MES']
+        if 'MES' in data:
+            self.mes = data['MES']
 
     def init_hidden_state(self, z):
         b, c, h, w = z.shape

@@ -61,7 +61,9 @@ def innoguard_attack(image_numpy, attack_type):
         
         result = torch.clamp(y_forw,0,1)
         lr_img = tensor2img(result)
-
+        # Turn image to RGB
+        lr_img = lr_img[:, :, ::-1]
+        
     print("Attacked image type, shape: ", type(lr_img), lr_img.shape)
     return lr_img, lr_img
 
