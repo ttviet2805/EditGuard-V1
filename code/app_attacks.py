@@ -3,6 +3,9 @@ import numpy as np
 from utils.JPEG import DiffJPEG
 from utils.util import tensor2img, save_img
 from PIL import Image
+import app_utils
+import cv2
+from app_utils import rgb_to_bgr, bgr_to_rgb
 
 
 def JPEG_image_degradation(image, NL):
@@ -61,16 +64,16 @@ def innoguard_attack(image_numpy, attack_type):
         
         result = torch.clamp(y_forw,0,1)
         lr_img = tensor2img(result)
-        # Turn image to RGB
-        lr_img = lr_img[:, :, ::-1]
+        # # Turn image to RGB
+        lr_img = app_utils.bgr_to_rgb(lr_img)
         
     print("Attacked image type, shape: ", type(lr_img), lr_img.shape)
     return lr_img, lr_img
 
+
 # tmp = "/workspace/128x128_image_1.png"
-# img = np.array(Image.open(tmp).convert('RGB'))
-# Image.fromarray(img).save("/workspace/ori_image.png")
+# img_np = cv2.imread(tmp)
+# save_img(img_np, "/workspace/origin_attack_image.png")
 
-# attacked_img, _ = innoguard_attack(img, 0)
-
+# attacked_img, _ = innoguard_attack(img_np, 0)
 # save_img(attacked_img, "/workspace/attacked_image.png")

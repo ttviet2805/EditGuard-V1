@@ -142,3 +142,66 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
 
 # Deploy server
 demo.launch(server_name="0.0.0.0", server_port=2002, share=True, favicon_path='../logo.png')
+# demo.launch(server_name="127.0.0.1", server_port=2002, share=False, favicon_path='../logo.png')
+
+
+# ==================================================================================================================
+# from PIL import Image
+# import numpy as np
+# import cv2
+# from utils.util import save_img, tensor2img
+
+# model = backend.image_model_select(0)
+
+
+# input_path = "/workspace/EditGuard-V1/dataset/valAGE-Set/0000.png"
+# img_np = cv2.imread(input_path)
+# input_bit = "001110010010010111110000111111"
+# save_img(img_np, "/workspace/ori_image.png")
+# # Image.fromarray(img_np, mode="RGB").save("/workspace/ori_image_RGB.png")
+
+# out, out = backend.hiding(img_np, input_bit, model)
+# save_img(out, "/workspace/container_image.png")
+
+# print("Type image: ", type(img_np))
+# print("Type out: ", type(out))
+
+
+# attacked_img, _ = app_attacks.innoguard_attack(out, 0)
+# save_img(attacked_img, "/workspace/attacked_image.png")
+
+
+# bit, bit_acc = backend.revealing(out, input_bit, model)
+# bit, bit_acc = backend.revealing(attacked_img, input_bit, model)
+
+
+# from PIL import Image
+# import numpy as np
+# from utils.util import save_img, tensor2img
+
+# model = backend.image_model_select(0)
+
+# # --- Load with PIL (RGB) ---
+# input_path = "/workspace/EditGuard-V1/dataset/valAGE-Set/0000.png"
+# img_pil = Image.open(input_path).convert("RGB")
+# img_np = np.array(img_pil)   # HWC, RGB, uint8
+
+# input_bit = "001110010010010111110000111111"
+
+# # Save original for sanity check
+# Image.fromarray(img_np, mode="RGB").save("/workspace/ori_image.png")
+
+# # Hide watermark
+# out, out = backend.hiding(img_np, input_bit, model)
+# Image.fromarray(out, mode="RGB").save("/workspace/container_image.png")
+
+# print("Type image: ", type(img_np), img_np.shape)
+# print("Type out: ", type(out), getattr(out, "shape", None))
+
+# # Attack image
+# attacked_img, _ = app_attacks.innoguard_attack(out, 0)
+# Image.fromarray(attacked_img, mode="RGB").save("/workspace/attacked_image.png")
+
+# # Reveal watermark
+# bit, bit_acc = backend.revealing(out, input_bit, model)
+# bit, bit_acc = backend.revealing(attacked_img, input_bit, model)

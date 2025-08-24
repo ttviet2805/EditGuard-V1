@@ -852,8 +852,12 @@ class Model_VSN(BaseModel):
             self.secret = [dwt(self.secret[:,i].reshape(b, -1, h, w)) for i in range(n)]
 
             message = torch.Tensor(self.mes).to(self.device)
-
+            
+            t0 = time.perf_counter()
             self.output, container = self.netG(x=dwt(self.host.reshape(b, -1, h, w)), x_h=self.secret, message=message)
+            t1 = time.perf_counter()
+            feed_ms = (t1 - t0) * 1000.0
+            print(f"Image hiding real time: {feed_ms:.2f} ms")
             y_forw = container
 
             result = torch.clamp(y_forw,0,1)
