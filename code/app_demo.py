@@ -67,6 +67,9 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
     
     # =========================================================== DATA INIT ===========================================================
     model = gr.State(value = backend.image_model_select(0))
+    is_rgb_image = gr.State(value = True)
+    image_edit_value = gr.State(value = None)
+    image_edited_1_value = gr.State(value = None)
 
     with gr.Tabs():
         with gr.TabItem('Multipurpose Forensic Watermark'):
@@ -124,7 +127,7 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
 
                 # Embed Watermark
                 hiding_button.click(
-                    backend.hiding, inputs=[image_input, bit_input, model], outputs=[image_watermark, image_edit]
+                    backend.hiding, inputs=[image_input, bit_input, model, is_rgb_image], outputs=[image_watermark, image_edit, image_edit_value]
                 )
                 rand_bit.click(
                     app_utils.rand, inputs=[], outputs=[bit_input]
@@ -132,12 +135,12 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
 
                 # Tamper Image
                 attacking_button.click(
-                    app_attacks.innoguard_attack, inputs = [image_edit, attacking_model_list], outputs=[image_edited, image_edited_1]
+                    app_attacks.innoguard_attack, inputs = [image_edit_value, attacking_model_list, is_rgb_image], outputs=[image_edited, image_edited_1, image_edited_1_value]
                 )
 
                 # Extract Watermark
                 revealing_button.click(
-                    backend.revealing, inputs=[image_edited_1, bit_input, model], outputs=[bit_output, acc_output]
+                    backend.revealing, inputs=[image_edited_1_value, bit_input, model, is_rgb_image], outputs=[bit_output, acc_output]
                 )
 
 # Deploy server
@@ -160,18 +163,18 @@ demo.launch(server_name="0.0.0.0", server_port=2002, share=True, favicon_path='.
 # save_img(img_np, "/workspace/ori_image.png")
 # # Image.fromarray(img_np, mode="RGB").save("/workspace/ori_image_RGB.png")
 
-# out, out = backend.hiding(img_np, input_bit, model)
+# out, _, _ = backend.hiding(img_np, input_bit, model)
 # save_img(out, "/workspace/container_image.png")
 
 # print("Type image: ", type(img_np))
 # print("Type out: ", type(out))
 
 
-# attacked_img, _ = app_attacks.innoguard_attack(out, 0)
+# attacked_img, _, _ = app_attacks.innoguard_attack(out, 0)
 # save_img(attacked_img, "/workspace/attacked_image.png")
 
 
-# bit, bit_acc = backend.revealing(out, input_bit, model)
+# # bit, bit_acc = backend.revealing(out, input_bit, model)
 # bit, bit_acc = backend.revealing(attacked_img, input_bit, model)
 
 

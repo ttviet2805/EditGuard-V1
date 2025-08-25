@@ -44,9 +44,13 @@ def image_model_select(ckp_index=0):
     model.load_test(model_pth)
     return model
 
-def hiding(image_input, bit_input, model):
+def hiding(image_input, bit_input, model, is_rgb_image = False):
+    if is_rgb_image == True:
+        image_input = rgb_to_bgr(image_input)
+    
     print("========== Image Embedding ==========")
     print("Input image type, shape: ", type(image_input), image_input.shape)
+    print(image_input)
     print("Message", bit_input)
     
     # from utils.util import save_img
@@ -79,7 +83,12 @@ def hiding(image_input, bit_input, model):
 
     from PIL import Image
     image = Image.fromarray(container)
-    return container, container
+    
+    if is_rgb_image == True:
+        rgb_container = bgr_to_rgb(container)
+        return rgb_container.copy(), rgb_container.copy(), rgb_container.copy()
+    else:
+        return container.copy(), container.copy(), container.copy()
 
 def ImageEdit(img, prompt, model_index):
     image, mask = img["image"], np.float32(img["mask"])
@@ -87,9 +96,13 @@ def ImageEdit(img, prompt, model_index):
     received_image = image_editing(image, mask, prompt)
     return received_image, received_image, received_image
 
-def revealing(image_edited, input_bit, model):
+def revealing(image_edited, input_bit, model, is_rgb_image = False):
+    if is_rgb_image == True:
+        image_edited = rgb_to_bgr(image_edited)
+    
     print("========== Image Extracting ==========")
     print("Extracted image type, shape: ", type(image_edited), image_edited.shape)
+    print(image_edited)
     print("Message: ", input_bit)
     number = 0.2
 

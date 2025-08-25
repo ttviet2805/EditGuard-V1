@@ -34,10 +34,14 @@ def Gaussian_image_degradation(image, NL):
     y_forw = (y_forw * 255.0).astype(np.uint8)
     return y_forw, y_forw
 
-def innoguard_attack(image_numpy, attack_type):
+def innoguard_attack(image_numpy, attack_type, is_rgb_image = False):
+    if is_rgb_image == True:
+        image_numpy = app_utils.rgb_to_bgr(image_numpy)
+        
     print("========== Image Attacking ==========")
     print("Attack type: ", attack_type)
     print("Image type, shape", type(image_numpy), image_numpy.shape)
+    print(image_numpy)
     
     image_numpy = np.ascontiguousarray(image_numpy)
     image_tensor = torch.from_numpy(image_numpy).permute(2, 0, 1).float() / 255.0
@@ -64,11 +68,16 @@ def innoguard_attack(image_numpy, attack_type):
         
         result = torch.clamp(y_forw,0,1)
         lr_img = tensor2img(result)
-        # # Turn image to RGB
-        lr_img = app_utils.bgr_to_rgb(lr_img)
+        # Turn image to BGR
+        lr_img = app_utils.rgb_to_bgr(lr_img)
         
     print("Attacked image type, shape: ", type(lr_img), lr_img.shape)
-    return lr_img, lr_img
+    
+    if is_rgb_image == True:
+        rgb_lr_img = app_utils.bgr_to_rgb(lr_img)
+        return rgb_lr_img.copy(), rgb_lr_img.copy(), rgb_lr_img.copy()
+    else:
+        return lr_img.copy(), lr_img.copy(), lr_img.copy()
 
 
 # tmp = "/workspace/128x128_image_1.png"
