@@ -7,6 +7,8 @@ import app_attacks
 # ----- VN START -----
 import sys
 import logging
+import app_demo_face_blur, app_demo_news, app_demo_transport
+
 
 # Open the file with UTF-8 encoding to support emojis and Unicode
 logfile = open("app_console.log", "w", encoding="utf-8", buffering=1)
@@ -42,21 +44,41 @@ default_example = examples[0]
 
 # =========================================================== FRONT END ===========================================================
 
-logo_base64 = app_utils.img_to_base64("../logo.png")
+logo_base64 = app_utils.img_to_base64("../utils/InnoGuard.png")
 
 html_content = f"""
 <div style='display: flex; align-items: center; justify-content: center; padding: 20px;'>
     <img src='data:image/png;base64,{logo_base64}' alt='Logo' style='height: 50px; margin-right: 20px;'>
-    <strong><font size='8'>EditGuard<font></strong>
+    <strong><font size='8'>InnoGuard<font></strong>
 </div>
 """
 
 # Description
-title = "<center><strong><font size='8'>EditGuard<font></strong></center>"
+title = "<center><strong><font size='8'>InnoGuard<font></strong></center>"
 
-css = "h1 { text-align: center } .about { text-align: justify; padding-left: 10%; padding-right: 10%; }"
+css = """h1 { text-align: center } .about { text-align: justify; padding-left: 10%; padding-right: 10%; } .gradio-container .gr-block.gr-column,
+.gradio-container .gr-block.gr-row,
+.gradio-container .gr-block.gr-group {
+    background: white !important;
+}
 
-with gr.Blocks(css=css, title="EditGuard") as demo:
+/* Input boxes (Textbox, Number, JSON...) nền trắng */
+textarea, input, select {
+    background-color: white !important;
+    color: black !important;
+}
+
+.json-wrap, .json-wrap pre {
+    background-color: white !important;
+    color: black !important;
+}
+
+/* Tab panel content */
+.gradio-container .tabitem {
+    background: white !important;
+}"""
+
+with gr.Blocks(css=css, title="InnoGuard") as demo:
     gr.HTML(html_content)
     save_h = gr.State(value = None)
     save_w = gr.State(value = None)
@@ -72,6 +94,9 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
     image_edited_1_value = gr.State(value = None)
 
     with gr.Tabs():
+        app_demo_face_blur.render_tab()
+        app_demo_news.render_tab()
+        app_demo_transport.render_tab()
         with gr.TabItem('Multipurpose Forensic Watermark'):
 
             DESCRIPTION = """
@@ -144,7 +169,7 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
                 )
 
 # Deploy server
-demo.launch(server_name="0.0.0.0", server_port=2002, share=True, favicon_path='../logo.png')
+demo.launch(server_name="0.0.0.0", server_port=2002, share=True, favicon_path='../utils/InnoGuard.png')
 # demo.launch(server_name="127.0.0.1", server_port=2002, share=False, favicon_path='../logo.png')
 
 
