@@ -178,7 +178,7 @@ demo.launch(server_name="0.0.0.0", server_port=2002, share=True, favicon_path='.
 # # bit, bit_acc = backend.revealing(out, input_bit, model)
 # bit, bit_acc = backend.revealing(attacked_img, input_bit, model)
 
-
+# ==================================================================================================================
 # from PIL import Image
 # import numpy as np
 # from utils.util import save_img, tensor2img
@@ -208,4 +208,41 @@ demo.launch(server_name="0.0.0.0", server_port=2002, share=True, favicon_path='.
 
 # # Reveal watermark
 # bit, bit_acc = backend.revealing(out, input_bit, model)
+# bit, bit_acc = backend.revealing(attacked_img, input_bit, model)
+
+# ==================================================================================================================
+# from PIL import Image
+# import numpy as np
+# import cv2
+# from utils.util import save_img, tensor2img
+
+# model = backend.image_model_select(0)
+
+
+# input_path = "/workspace/1024x1024_image_1.png"
+# img_input_np = cv2.imread(input_path)
+# save_img(img_input_np, "/workspace/ori_image.png")
+# metadata_input = "vietpro_123"
+# type_ECC = 0
+
+# out_image, embed_message = backend.innoguard_hiding(img_input_np, metadata_input, type_ECC, model)
+# save_img(out_image, "/workspace/watermarking_image.png")
+
+# out_message = backend.innoguard_revealing(out_image, type_ECC, model)
+
+# bit_acc = app_utils.calculate_similarity_percentage(embed_message, out_message)
+# print(bit_acc)
+
+# out, _, _ = backend.hiding(img_np, input_bit, model)
+# save_img(out, "/workspace/container_image.png")
+
+# print("Type image: ", type(img_np))
+# print("Type out: ", type(out))
+
+
+# attacked_img, _, _ = app_attacks.innoguard_attack(out, 0)
+# save_img(attacked_img, "/workspace/attacked_image.png")
+
+
+# # bit, bit_acc = backend.revealing(out, input_bit, model)
 # bit, bit_acc = backend.revealing(attacked_img, input_bit, model)
