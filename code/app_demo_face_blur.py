@@ -93,7 +93,7 @@ def render_tab(model):
                             except Exception:
                                 # bỏ hàng chưa đủ số
                                 continue
-                        return {"message": out}
+                        return {"Message": out}
 
                     # ---------- wiring ----------
                     add_btn.click(on_add, inputs=[row_count],
@@ -130,7 +130,7 @@ def render_tab(model):
                     # --------- extract button click here ---------
 
                 with gr.Column():
-                    extracted_output = gr.Textbox(label="Output {name, bbox}", lines=5, interactive=False)
+                    extracted_output = gr.Textbox(label="Output {name, bbox}", lines=10, interactive=False)
 
                 extract_btn.click(
                     backend.innoguard_revealing,
