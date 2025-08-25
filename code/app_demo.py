@@ -56,29 +56,22 @@ html_content = f"""
 # Description
 title = "<center><strong><font size='8'>InnoGuard<font></strong></center>"
 
-css = """h1 { text-align: center } .about { text-align: justify; padding-left: 10%; padding-right: 10%; } .gradio-container .gr-block.gr-column,
-.gradio-container .gr-block.gr-row,
-.gradio-container .gr-block.gr-group {
+css = """h1 { text-align: center } .about { text-align: justify; padding-left: 10%; padding-right: 10%; } .gradio-container .gr-block.gr-group {
     background: white !important;
+    border: 1px solid #e5e7eb !important;  /* optional subtle border */
+    box-shadow: none !important;           /* remove shadow if present */
 }
-
-/* Input boxes (Textbox, Number, JSON...) nền trắng */
-textarea, input, select {
-    background-color: white !important;
-    color: black !important;
+#reg_group, #ext_group,
+#reg_group > .gr-box, #ext_group > .gr-box,
+#reg_group .gr-panel, #ext_group .gr-panel,
+#reg_group .gr-group, #ext_group .gr-group {
+  background: #ffffff !important;
+  box-shadow: none !important;
 }
+"""
 
-.json-wrap, .json-wrap pre {
-    background-color: white !important;
-    color: black !important;
-}
 
-/* Tab panel content */
-.gradio-container .tabitem {
-    background: white !important;
-}"""
-
-with gr.Blocks(css=css, title="InnoGuard") as demo:
+with gr.Blocks(css=css, title="InnoGuard", theme=gr.themes.Soft()) as demo:
     gr.HTML(html_content)
     save_h = gr.State(value = None)
     save_w = gr.State(value = None)
@@ -95,8 +88,9 @@ with gr.Blocks(css=css, title="InnoGuard") as demo:
 
     with gr.Tabs():
         app_demo_face_blur.render_tab(model)
-        # app_demo_news.render_tab(model)
-        # app_demo_transport.render_tab(model)
+        app_demo_transport.render_tab(model)
+        app_demo_news.render_tab(model)
+        
         with gr.TabItem('Multipurpose Forensic Watermark'):
 
             DESCRIPTION = """
