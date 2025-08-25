@@ -7,6 +7,7 @@ import torch
 import options.options as option
 from models import create_model as create_model_editguard
 from app_utils import calculate_similarity_percentage, rgb_to_bgr, bgr_to_rgb
+import app_utils
 from utils.util import calculate_psnr
 
 
@@ -50,7 +51,7 @@ def hiding(image_input, bit_input, model, is_rgb_image = False):
     
     print("========== Image Embedding ==========")
     print("Input image type, shape: ", type(image_input), image_input.shape)
-    print(image_input)
+    # print(image_input)
     print("Message", bit_input)
     
     # from utils.util import save_img
@@ -102,7 +103,7 @@ def revealing(image_edited, input_bit, model, is_rgb_image = False):
     
     print("========== Image Extracting ==========")
     print("Extracted image type, shape: ", type(image_edited), image_edited.shape)
-    print(image_edited)
+    # print(image_edited)
     print("Message: ", input_bit)
     number = 0.2
 
@@ -130,3 +131,98 @@ def revealing(image_edited, input_bit, model, is_rgb_image = False):
     print("Receive message: ", remesg)
     print("Bit Accuracy: ", bit_acc)
     return remesg, bit_acc
+
+def revealing_no_accuracy_calculation(image_edited, model, is_rgb_image = False):
+    if is_rgb_image == True:
+        image_edited = rgb_to_bgr(image_edited)
+    
+    print("========== Image Extracting ==========")
+    print("Extracted image type, shape: ", type(image_edited), image_edited.shape)
+    # print(image_edited)
+    number = 0.2
+
+    container_data = load_image(image_edited) ## load tampered images
+    
+    # ---- time: feed_data ----
+    t0 = time.perf_counter()
+    model.feed_data(container_data)
+    t1 = time.perf_counter()
+    feed_ms = (t1 - t0) * 1000.0
+    print(f"feed_data time: {feed_ms:.2f} ms")
+    
+    # ---- time: image_recovery ----
+    t2 = time.perf_counter()
+    remesg = model.image_recovery(number)
+    t3 = time.perf_counter()
+    recovery_ms = (t3 - t2) * 1000.0
+    total_ms = (t3 - t0) * 1000.0
+    print(f"image_recovery time: {recovery_ms:.2f} ms")
+    print(f"Total (feed_data + image_recovery): {total_ms:.2f} ms")
+    
+    remesg = remesg.cpu().numpy()[0]
+    remesg = ''.join([str(int(x)) for x in remesg])
+    print("Receive message: ", remesg)
+    return remesg
+
+def innoguard_hiding(image_input, metadata_input, type_ECC, model, is_rgb_image = False):
+    print("================================================== InnoGuard Image Embedding ==================================================")
+    print("Input image type, shape: ", type(image_input), image_input.shape)
+    # print(image_input)
+    print("Message: ", metadata_input)
+    
+    # Constant
+    SUB_IMAGE_SIZE = 128
+    SUB_IMAGE_BIT = 30
+    
+    # Input init
+    metadata_input_bit = app_utils.encode_ascii(metadata_input)
+    metadata_list, metadata_padding = app_utils.split_bits_30(metadata_input_bit)
+    tiles_128, coords, orig_hw, padded_hw = app_utils.split_into_tiles_128(image_input, pad_mode="edge")
+    num_child_images = len(tiles_128)
+    list_container_numpy = []
+    H, W, C = image_input.shape
+    num_child_on_width_size, num_child_on_height_size = H//SUB_IMAGE_SIZE, W//SUB_IMAGE_SIZE
+    print("Maximum bit number: ", num_child_images * SUB_IMAGE_BIT)
+    
+    out_message = ""
+    
+    for i in range(0, num_child_images):
+        if i < len(metadata_list):
+            message = metadata_list[i]
+        else:
+            message = "0" * SUB_IMAGE_BIT
+            
+        out_message += message
+    
+        current_image_np, _, _ = hiding(tiles_128[i], message, model, is_rgb_image)
+        list_container_numpy.append(current_image_np)
+        
+    parent_container = app_utils.combine_tiles_ordered(list_container_numpy, num_child_on_width_size, num_child_on_height_size)
+    return parent_container, out_message
+
+def innoguard_revealing(image_edited, type_ECC, model, is_rgb_image = False):
+    print("================================================== InnoGuard Image Extracting ==================================================")
+    print("Input image type, shape: ", type(image_edited), image_edited.shape)
+    # print(image_input)
+    
+    # Constant
+    SUB_IMAGE_SIZE = 128
+    SUB_IMAGE_BIT = 30
+    
+    # Input init
+    H, W, C = image_edited.shape
+    num_child_on_width_size, num_child_on_height_size = H//SUB_IMAGE_SIZE, W//SUB_IMAGE_SIZE
+    num_child_images = num_child_on_width_size * num_child_on_height_size
+    tiles_128, coords, orig_hw, padded_hw = app_utils.split_into_tiles_128(image_edited, pad_mode="edge")    
+    num_child_images = len(tiles_128)
+    print("Maximum bit number: ", num_child_images * SUB_IMAGE_BIT)
+    
+    out_bit = ""
+    
+    for i in range(0, num_child_images):
+        message = revealing_no_accuracy_calculation(tiles_128[i], model, is_rgb_image)
+        out_bit += message
+    
+    out_metadata = app_utils.decode_ascii_until_zero_byte(out_bit)
+    
+    return out_bit, out_metadata

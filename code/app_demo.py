@@ -130,7 +130,7 @@ with gr.Blocks(css=css, title="InnoGuard") as demo:
                             # text_prompt = gr.Textbox(label="Tampering Prompt")
                             attacking_button = gr.Button("Tamper Image")
                         with gr.Column():
-                            image_edited = gr.Image(label="Tampered Result", interactive=True, type="numpy")
+                            image_edited = gr.Image(label="Tampered Result", interactive=False, type="numpy")
                 
 
                 with gr.Group():
@@ -165,7 +165,7 @@ with gr.Blocks(css=css, title="InnoGuard") as demo:
 
                 # Extract Watermark
                 revealing_button.click(
-                    backend.revealing, inputs=[image_edited_1_value, bit_input, model, is_rgb_image], outputs=[bit_output, acc_output]
+                    backend.revealing, inputs=[image_edited_1, bit_input, model, is_rgb_image], outputs=[bit_output, acc_output]
                 )
 
 # Deploy server
@@ -185,6 +185,7 @@ demo.launch(server_name="0.0.0.0", server_port=2002, share=True, favicon_path='.
 # input_path = "/workspace/EditGuard-V1/dataset/valAGE-Set/0000.png"
 # img_np = cv2.imread(input_path)
 # input_bit = "001110010010010111110000111111"
+            # "001100010100010110110001011111"
 # save_img(img_np, "/workspace/ori_image.png")
 # # Image.fromarray(img_np, mode="RGB").save("/workspace/ori_image_RGB.png")
 
@@ -202,7 +203,7 @@ demo.launch(server_name="0.0.0.0", server_port=2002, share=True, favicon_path='.
 # # bit, bit_acc = backend.revealing(out, input_bit, model)
 # bit, bit_acc = backend.revealing(attacked_img, input_bit, model)
 
-
+# ==================================================================================================================
 # from PIL import Image
 # import numpy as np
 # from utils.util import save_img, tensor2img
@@ -232,4 +233,60 @@ demo.launch(server_name="0.0.0.0", server_port=2002, share=True, favicon_path='.
 
 # # Reveal watermark
 # bit, bit_acc = backend.revealing(out, input_bit, model)
+# bit, bit_acc = backend.revealing(attacked_img, input_bit, model)
+
+# ==================================================================================================================
+# from PIL import Image
+# import numpy as np
+# import cv2
+# from utils.util import save_img, tensor2img
+
+# model = backend.image_model_select(0)
+
+
+# input_path = "/workspace/1024x1024_image_1.png"
+# img_input_np = cv2.imread(input_path)
+# save_img(img_input_np, "/workspace/ori_image.png")
+# metadata_input = "vietpro_123"
+# type_ECC = 0
+
+# out_image, embed_message = backend.innoguard_hiding(img_input_np, metadata_input, type_ECC, model)
+# save_img(out_image, "/workspace/watermarking_image.png")
+
+# out_bit, out_metadata = backend.innoguard_revealing(out_image, type_ECC, model)
+
+# bit_acc = app_utils.calculate_similarity_percentage(embed_message, out_bit)
+# print(embed_message)
+# print(out_bit)
+# print(bit_acc)
+# print(out_metadata)
+
+# def diff_positions(s1: str, s2: str):
+#     """
+#     Return list of indices where s1 and s2 differ.
+#     If lengths differ, the extra part counts as differences too.
+#     """
+#     max_len = max(len(s1), len(s2))
+#     diffs = []
+#     for i in range(max_len):
+#         c1 = s1[i] if i < len(s1) else None
+#         c2 = s2[i] if i < len(s2) else None
+#         if c1 != c2:
+#             diffs.append((i, c1, c2))
+#     return diffs
+
+# print(diff_positions(embed_message, out_bit))
+
+# out, _, _ = backend.hiding(img_np, input_bit, model)
+# save_img(out, "/workspace/container_image.png")
+
+# print("Type image: ", type(img_np))
+# print("Type out: ", type(out))
+
+
+# attacked_img, _, _ = app_attacks.innoguard_attack(out, 0)
+# save_img(attacked_img, "/workspace/attacked_image.png")
+
+
+# # bit, bit_acc = backend.revealing(out, input_bit, model)
 # bit, bit_acc = backend.revealing(attacked_img, input_bit, model)
