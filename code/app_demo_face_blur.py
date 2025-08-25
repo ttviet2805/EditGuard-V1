@@ -1,51 +1,6 @@
 import gradio as gr
 import backend
 import json
-# CUSTOM_CSS = """
-# .circle-btn {
-#     width: 60px !important;
-#     height: 60px !important;
-#     border-radius: 50% !important;
-#     border: none !important;
-#     background-color: #e5e7eb !important;
-#     color: #111827 !important;
-#     font-size: 18px !important;
-#     font-weight: 600 !important;
-#     cursor: pointer !important;
-#     display: flex !important;
-#     align-items: center !important;
-#     justify-content: center !important;
-#     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-# }
-
-# /* make the middle column flexbox & full height */
-# .embed-col {
-#     display: flex !important;
-#     align-items: center !important;    /* vertical centering */
-#     justify-content: center !important;/* horizontal centering */
-#     height: 100% !important;
-# }
-# """
-
-CUSTOM_CSS = """
-/* Xóa nền xám của các component box */
-.svelte-1ipelgc, 
-.svelte-1ipelgc textarea,
-.svelte-1ipelgc input,
-.svelte-1ipelgc .wrap {
-    background-color: white !important;
-}
-
-/* Riêng JSON component */
-.json-wrap, .json-wrap pre {
-    background-color: white !important;
-}
-
-/* Nếu còn Column bị màu xám */
-.gradio-container .gr-block.gr-column {
-    background: transparent !important;
-}
-"""
 
 def render_tab(model):
     with gr.TabItem("👲 Application 1: Face Blur"):
@@ -152,9 +107,10 @@ def render_tab(model):
                         inputs=[row_count, *name_boxes, *x1_boxes, *y1_boxes, *x2_boxes, *y2_boxes],
                         outputs=json_input
                     )
-            
+
                 with gr.Column(scale=1, min_width=200):
                     image_watermark = gr.Image(label="Watermarked image", interactive=False)
+                    gr.HTML("<div style='height:10px;'></div>")
                     embed_btn = gr.Button("➡️ Embed into image")
                     embed_status = gr.Textbox(label="Embed Status", interactive=False)
 
@@ -170,6 +126,7 @@ def render_tab(model):
             with gr.Row():        
                 with gr.Column():
                     image_rec = gr.Image(label="Distorted image", interactive=True, sources="upload", type="numpy")
+                    gr.HTML("<div style='height:10px;'></div>")
                     extract_btn = gr.Button("➡️ Extract information from image")
 
                     # --------- extract button click here ---------
