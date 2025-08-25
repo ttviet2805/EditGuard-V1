@@ -72,6 +72,7 @@ def decode_ascii(bits: str, errors: str = "strict") -> str:
 def decode_ascii_until_zero_byte(bits: str, errors: str = "strict") -> str:
     """
     Decode ASCII from a bitstring until the first all-zero byte (00000000).
+    If a byte >= 128 is encountered, clear the MSB (val & 0x7F) to force into ASCII range.
     Everything after that is treated as padding.
     """
     if any(c not in "01" for c in bits):
@@ -83,13 +84,24 @@ def decode_ascii_until_zero_byte(bits: str, errors: str = "strict") -> str:
     bytes_out = []
     for i in range(n_full):
         byte_bits = bits[i*8:(i+1)*8]
-        if byte_bits == "00000000":  # stop at the first null byte
+
+        # stop at the first null byte
+        if byte_bits == "00000000":
             break
-        bytes_out.append(int(byte_bits, 2))
+
+        val = int(byte_bits, 2)
+        # if non-ASCII, strip MSB
+        if val >= 128:
+            val = val & 0x7F
+            
+        # print(f"Byte {i}: {val} → '{chr(val)}'")
+
+        bytes_out.append(val)
 
     if not bytes_out:
         return ""
     return bytes(bytes_out).decode("ascii", errors=errors)
+
 
 def split_into_tiles_128(img: np.ndarray, pad_mode: str = "edge"):
     """

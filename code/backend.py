@@ -179,6 +179,7 @@ def innoguard_hiding(image_input, metadata_input, type_ECC, model, is_rgb_image 
     
     # Input init
     metadata_input_bit = app_utils.encode_ascii(metadata_input)
+    print("Message bit: ", metadata_input_bit)
     metadata_list, metadata_padding = app_utils.split_bits_30(metadata_input_bit)
     tiles_128, coords, orig_hw, padded_hw = app_utils.split_into_tiles_128(image_input, pad_mode="edge")
     num_child_images = len(tiles_128)
@@ -227,5 +228,7 @@ def innoguard_revealing(image_edited, type_ECC, model, is_rgb_image = False):
         out_bit += message
     
     out_metadata = app_utils.decode_ascii_until_zero_byte(out_bit)
+    print("Output metadata bit: ", out_bit)
+    print("Output metadata: ", out_metadata)
     
     return out_bit, out_metadata
