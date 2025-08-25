@@ -217,10 +217,12 @@ def innoguard_revealing(image_edited, type_ECC, model, is_rgb_image = False):
     num_child_images = len(tiles_128)
     print("Maximum bit number: ", num_child_images * SUB_IMAGE_BIT)
     
-    out_message = ""
+    out_bit = ""
     
     for i in range(0, num_child_images):
         message = revealing_no_accuracy_calculation(tiles_128[i], model, is_rgb_image)
-        out_message += message
+        out_bit += message
     
-    return out_message
+    out_metadata = app_utils.decode_ascii_until_zero_byte(out_bit)
+    
+    return out_bit, out_metadata

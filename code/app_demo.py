@@ -228,10 +228,29 @@ demo.launch(server_name="0.0.0.0", server_port=2002, share=True, favicon_path='.
 # out_image, embed_message = backend.innoguard_hiding(img_input_np, metadata_input, type_ECC, model)
 # save_img(out_image, "/workspace/watermarking_image.png")
 
-# out_message = backend.innoguard_revealing(out_image, type_ECC, model)
+# out_bit, out_metadata = backend.innoguard_revealing(out_image, type_ECC, model)
 
-# bit_acc = app_utils.calculate_similarity_percentage(embed_message, out_message)
+# bit_acc = app_utils.calculate_similarity_percentage(embed_message, out_bit)
+# print(embed_message)
+# print(out_bit)
 # print(bit_acc)
+# print(out_metadata)
+
+# def diff_positions(s1: str, s2: str):
+#     """
+#     Return list of indices where s1 and s2 differ.
+#     If lengths differ, the extra part counts as differences too.
+#     """
+#     max_len = max(len(s1), len(s2))
+#     diffs = []
+#     for i in range(max_len):
+#         c1 = s1[i] if i < len(s1) else None
+#         c2 = s2[i] if i < len(s2) else None
+#         if c1 != c2:
+#             diffs.append((i, c1, c2))
+#     return diffs
+
+# print(diff_positions(embed_message, out_bit))
 
 # out, _, _ = backend.hiding(img_np, input_bit, model)
 # save_img(out, "/workspace/container_image.png")

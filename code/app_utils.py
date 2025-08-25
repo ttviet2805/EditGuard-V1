@@ -69,6 +69,28 @@ def decode_ascii(bits: str, errors: str = "strict") -> str:
     byts = bytes(int(bits[i:i+8], 2) for i in range(0, len(bits), 8))
     return byts.decode("ascii", errors=errors)
 
+def decode_ascii_until_zero_byte(bits: str, errors: str = "strict") -> str:
+    """
+    Decode ASCII from a bitstring until the first all-zero byte (00000000).
+    Everything after that is treated as padding.
+    """
+    if any(c not in "01" for c in bits):
+        raise ValueError("bits must contain only '0' and '1'")
+    if len(bits) < 8:
+        return ""
+
+    n_full = len(bits) // 8
+    bytes_out = []
+    for i in range(n_full):
+        byte_bits = bits[i*8:(i+1)*8]
+        if byte_bits == "00000000":  # stop at the first null byte
+            break
+        bytes_out.append(int(byte_bits, 2))
+
+    if not bytes_out:
+        return ""
+    return bytes(bytes_out).decode("ascii", errors=errors)
+
 def split_into_tiles_128(img: np.ndarray, pad_mode: str = "edge"):
     """
     Split HxWxC (or HxW) image into 128x128 tiles.
