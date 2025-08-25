@@ -105,7 +105,7 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
                             # text_prompt = gr.Textbox(label="Tampering Prompt")
                             attacking_button = gr.Button("Tamper Image")
                         with gr.Column():
-                            image_edited = gr.Image(label="Tampered Result", interactive=True, type="numpy")
+                            image_edited = gr.Image(label="Tampered Result", interactive=False, type="numpy")
                 
 
                 with gr.Group():
@@ -140,7 +140,7 @@ with gr.Blocks(css=css, title="EditGuard") as demo:
 
                 # Extract Watermark
                 revealing_button.click(
-                    backend.revealing, inputs=[image_edited_1_value, bit_input, model, is_rgb_image], outputs=[bit_output, acc_output]
+                    backend.revealing, inputs=[image_edited_1, bit_input, model, is_rgb_image], outputs=[bit_output, acc_output]
                 )
 
 # Deploy server
@@ -160,6 +160,7 @@ demo.launch(server_name="0.0.0.0", server_port=2002, share=True, favicon_path='.
 # input_path = "/workspace/EditGuard-V1/dataset/valAGE-Set/0000.png"
 # img_np = cv2.imread(input_path)
 # input_bit = "001110010010010111110000111111"
+            # "001100010100010110110001011111"
 # save_img(img_np, "/workspace/ori_image.png")
 # # Image.fromarray(img_np, mode="RGB").save("/workspace/ori_image_RGB.png")
 
