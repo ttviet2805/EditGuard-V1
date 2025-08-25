@@ -94,9 +94,9 @@ with gr.Blocks(css=css, title="InnoGuard") as demo:
     image_edited_1_value = gr.State(value = None)
 
     with gr.Tabs():
-        app_demo_face_blur.render_tab()
-        app_demo_news.render_tab()
-        app_demo_transport.render_tab()
+        app_demo_face_blur.render_tab(model)
+        # app_demo_news.render_tab(model)
+        # app_demo_transport.render_tab(model)
         with gr.TabItem('Multipurpose Forensic Watermark'):
 
             DESCRIPTION = """

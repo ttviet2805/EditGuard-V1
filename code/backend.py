@@ -9,7 +9,7 @@ from models import create_model as create_model_editguard
 from app_utils import calculate_similarity_percentage, rgb_to_bgr, bgr_to_rgb
 import app_utils
 from utils.util import calculate_psnr
-
+import json
 
 def image_model_select(ckp_index=0):
     print("Initialize model for watermarking, model index: ", ckp_index)
@@ -170,6 +170,9 @@ def innoguard_hiding(image_input, metadata_input, type_ECC, model, is_rgb_image 
     # print(image_input)
     print("Message: ", metadata_input)
     
+    if (type(metadata_input) == dict):
+        metadata_input = json.dumps(metadata_input)
+        print("Message after dump: ", metadata_input)
     # Constant
     SUB_IMAGE_SIZE = 128
     SUB_IMAGE_BIT = 30

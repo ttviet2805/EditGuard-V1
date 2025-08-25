@@ -1,5 +1,6 @@
 import gradio as gr
-
+import backend
+import json
 # CUSTOM_CSS = """
 # .circle-btn {
 #     width: 60px !important;
@@ -46,8 +47,14 @@ CUSTOM_CSS = """
 }
 """
 
-def render_tab():
+def render_tab(model):
     with gr.TabItem("👲 Application 1: Face Blur"):
+
+        type_ECC = gr.State(value = None)
+        is_rgb_image = gr.State(value = True)
+        out_message = gr.State(value = None)
+        out_bit = gr.State(value = None)
+
         DESCRIPTION = """Register each person’s name and its corresponding bounding box into the image"""
         gr.Markdown(DESCRIPTION)
         with gr.Group():
@@ -131,7 +138,7 @@ def render_tab():
                             except Exception:
                                 # bỏ hàng chưa đủ số
                                 continue
-                        return out
+                        return {"message": out}
 
                     # ---------- wiring ----------
                     add_btn.click(on_add, inputs=[row_count],
@@ -149,7 +156,12 @@ def render_tab():
                     image_watermark = gr.Image(label="Watermarked image", interactive=False)
                     embed_btn = gr.Button("➡️ Embed into image")
 
-                    # --------- embed button here -----------
+                # --------- embed button click here -----------
+                embed_btn.click(
+                    backend.innoguard_hiding, 
+                    inputs = [image_input, json_input, type_ECC, model, is_rgb_image],
+                    outputs = [image_watermark, out_message]
+                )
 
         with gr.Group():
             gr.Markdown("## 2. Extraction Phase")
@@ -158,7 +170,13 @@ def render_tab():
                     image_rec = gr.Image(label="Distorted image", interactive=True, sources="upload", type="numpy")
                     extract_btn = gr.Button("➡️ Extract information from image")
 
-                    # --------- extract button here ---------
+                    # --------- extract button click here ---------
 
                 with gr.Column():
                     json_output = gr.JSON(label="Output {name, bbox}")
+
+                extract_btn.click(
+                    backend.innoguard_revealing,
+                    inputs = [image_rec, type_ECC, model, is_rgb_image],
+                    outputs = [out_bit, json_output]
+                )
