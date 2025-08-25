@@ -9,6 +9,7 @@ def render_tab(model):
         is_rgb_image = gr.State(value = True)
         out_message = gr.State(value = None)
         out_bit = gr.State(value = None)
+        embed_status = gr.State(value = "")
 
         DESCRIPTION = """Register each person’s name and its corresponding bounding box into the image"""
         gr.Markdown(DESCRIPTION)
@@ -111,12 +112,13 @@ def render_tab(model):
                     image_watermark = gr.Image(label="Watermarked image", interactive=False)
                     gr.HTML("<div style='height:10px;'></div>")
                     embed_btn = gr.Button("➡️ Embed into image")
+                    embed_status = gr.Textbox(label="Embed Status", interactive=False)
 
                 # --------- embed button click here -----------
                 embed_btn.click(
                     backend.innoguard_hiding, 
                     inputs = [image_input, json_input, type_ECC, model, is_rgb_image],
-                    outputs = [image_watermark, out_message]
+                    outputs = [image_watermark, out_message, embed_status]
                 )
 
         with gr.Group():
