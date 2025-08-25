@@ -173,10 +173,10 @@ def render_tab(model):
                     # --------- extract button click here ---------
 
                 with gr.Column():
-                    json_output = gr.JSON(label="Output {name, bbox}")
+                    extracted_output = gr.Textbox(label="Output {name, bbox}", lines=5, interactive=False)
 
                 extract_btn.click(
                     backend.innoguard_revealing,
                     inputs = [image_rec, type_ECC, model, is_rgb_image],
-                    outputs = [out_bit, json_output]
+                    outputs = [out_bit, extracted_output]
                 )
