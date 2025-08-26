@@ -14,6 +14,7 @@ def render_tab(model):
         out_bit = gr.State(value = None)
         # json_input = gr.State(value = None)
         embed_status = gr.State(value = "")
+        download_watermark_image = gr.State(value = "")
 
         DESCRIPTION = """Register news/articles's information into the image"""
         gr.Markdown(DESCRIPTION)
@@ -41,8 +42,9 @@ def render_tab(model):
                             embed_btn = gr.Button("➡️ Embed into image", variant = "secondary")
 
                 with gr.Column(scale=1, min_width=200):
-                    image_watermark = gr.Image(label="Watermarked image", interactive=False)
+                    image_watermark = gr.Image(label="Watermarked image", interactive=False, show_download_button=False)
                     gr.HTML("<div style='height:10px;'></div>")
+                    download_watermark_image = gr.File(label="Download Embed Image PNG")
                     embed_status = gr.Textbox(label="Embed Status", interactive=False)    
 
                 # --------- embed button click here -----------
@@ -69,7 +71,7 @@ def render_tab(model):
                 embed_btn.click(
                     backend.innoguard_hiding,
                     inputs = [image_input, json_input, type_ECC, model, is_rgb_image],
-                    outputs = [image_watermark, out_message, embed_status]
+                    outputs = [image_watermark, out_message, embed_status, download_watermark_image]
                 )
 
         with gr.Group():
