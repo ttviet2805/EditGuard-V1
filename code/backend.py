@@ -167,8 +167,9 @@ def revealing_no_accuracy_calculation(image_edited, model, is_rgb_image = False)
 def innoguard_hiding(image_input, metadata_input, type_ECC, model, is_rgb_image = False):
     print("================================================== InnoGuard Image Embedding ==================================================")
     print("Input image type, shape: ", type(image_input), image_input.shape)
-    # print(image_input)
+    print(image_input)
     print("Message: ", metadata_input)
+    print("is_rgb_image: ", is_rgb_image)
     
     if (type(metadata_input) == dict):
         metadata_input = json.dumps(metadata_input)
@@ -211,7 +212,7 @@ def innoguard_hiding(image_input, metadata_input, type_ECC, model, is_rgb_image 
         
     parent_container = app_utils.combine_tiles_ordered(list_container_numpy, num_child_on_width_size, num_child_on_height_size)
     
-    # print("PARENT CONTAINER: ", type(parent_container), parent_container.shape, '\n', parent_container)
+    print("----- PARENT CONTAINER: ", type(parent_container), parent_container.shape, ' -----\n', parent_container)
 
     # Save image into temp folder
     download_path = "download_image.png"
@@ -223,7 +224,8 @@ def innoguard_hiding(image_input, metadata_input, type_ECC, model, is_rgb_image 
 def innoguard_revealing(image_edited, type_ECC, model, is_rgb_image = False):
     print("================================================== InnoGuard Image Extracting ==================================================")
     print("Input image type, shape: ", type(image_edited), image_edited.shape)
-    # print(image_edited)
+    print(image_edited)
+    print("is_rgb_image: ", is_rgb_image)
     
     # Constant
     SUB_IMAGE_SIZE = 128
