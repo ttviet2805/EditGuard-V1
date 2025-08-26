@@ -192,10 +192,11 @@ def innoguard_hiding(image_input, metadata_input, type_ECC, model, is_rgb_image 
     
     out_message = ""
     embed_status = "Data have been embedded into the image successfully."
+    download_path = None
     
     if len(metadata_input) > max_characters:
         embed_status = f"Error: Message too long. Max characters allowed: {max_characters}. Current length: {len(metadata_input)}"
-        return None, out_message, embed_status
+        return None, out_message, embed_status, download_path
     
     for i in range(0, num_child_images):
         if i < len(metadata_list):
@@ -210,12 +211,19 @@ def innoguard_hiding(image_input, metadata_input, type_ECC, model, is_rgb_image 
         
     parent_container = app_utils.combine_tiles_ordered(list_container_numpy, num_child_on_width_size, num_child_on_height_size)
     
-    return parent_container, out_message, embed_status
+    # print("PARENT CONTAINER: ", type(parent_container), parent_container.shape, '\n', parent_container)
+
+    # Save image into temp folder
+    download_path = "download_image.png"
+    img = Image.fromarray(parent_container)
+    img.save(download_path)
+    
+    return parent_container, out_message, embed_status, download_path
 
 def innoguard_revealing(image_edited, type_ECC, model, is_rgb_image = False):
     print("================================================== InnoGuard Image Extracting ==================================================")
     print("Input image type, shape: ", type(image_edited), image_edited.shape)
-    # print(image_input)
+    # print(image_edited)
     
     # Constant
     SUB_IMAGE_SIZE = 128

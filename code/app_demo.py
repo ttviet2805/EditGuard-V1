@@ -241,10 +241,10 @@ demo.launch(server_name="0.0.0.0", server_port=2002, share=True, favicon_path='.
 # input_path = "/workspace/1024x1024_image_1.png"
 # img_input_np = cv2.imread(input_path)
 # save_img(img_input_np, "/workspace/ori_image.png")
-# metadata_input = "vietpro_123"
+# metadata_input = "{\"prohere\": \"viet_pro_123\"}"
 # type_ECC = 0
 
-# out_image, embed_message = backend.innoguard_hiding(img_input_np, metadata_input, type_ECC, model)
+# out_image, embed_message, _ = backend.innoguard_hiding(img_input_np, metadata_input, type_ECC, model)
 # save_img(out_image, "/workspace/watermarking_image.png")
 
 # out_bit, out_metadata = backend.innoguard_revealing(out_image, type_ECC, model)
@@ -270,12 +270,6 @@ demo.launch(server_name="0.0.0.0", server_port=2002, share=True, favicon_path='.
 #     return diffs
 
 # print(diff_positions(embed_message, out_bit))
-
-# out, _, _ = backend.hiding(img_np, input_bit, model)
-# save_img(out, "/workspace/container_image.png")
-
-# print("Type image: ", type(img_np))
-# print("Type out: ", type(out))
 
 
 # attacked_img, _, _ = app_attacks.innoguard_attack(out, 0)

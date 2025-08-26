@@ -13,7 +13,7 @@ def render_tab(model):
         out_message = gr.State(value = None)
         out_bit = gr.State(value = None)
         embed_status = gr.State(value = "")
-        download_watermark_image = gr.State(value = "")
+        download_watermark_image = gr.State(value = None)
 
         DESCRIPTION = """Register license plate into the image"""
         gr.Markdown(DESCRIPTION)
@@ -34,8 +34,8 @@ def render_tab(model):
                     image_watermark = gr.Image(label="Watermarked image", interactive=False, show_download_button=False)
                     gr.HTML("<div style='height:20px;'></div>")
                     embed_btn = gr.Button("➡️ Embed into image")
-                    download_watermark_image = gr.File(label="Download Embed Image PNG")
                     embed_status = gr.Textbox(label="Embed Status", interactive=False)
+                    download_watermark_image = gr.File(label="Download Watermarked Image PNG")
 
                 # --------- embed button click here -----------
                 embed_btn.click(
