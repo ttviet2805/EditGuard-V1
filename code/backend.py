@@ -79,7 +79,8 @@ def hiding(image_input, bit_input, model, is_rgb_image = False):
     print(f"image_hiding time: {hiding_ms:.2f} ms")
     print(f"Total (feed_data + image_hiding): {total_ms:.2f} ms")
     
-    print("PSNR: ", calculate_psnr(image_input, container))
+    cur_PSNR = calculate_psnr(image_input, container)
+    print("PSNR: ", cur_PSNR)
     print("Container type, shape: ", type(container), container.shape)
 
     from PIL import Image
@@ -87,9 +88,9 @@ def hiding(image_input, bit_input, model, is_rgb_image = False):
     
     if is_rgb_image == True:
         rgb_container = bgr_to_rgb(container)
-        return rgb_container.copy(), rgb_container.copy(), rgb_container.copy()
+        return rgb_container.copy(), rgb_container.copy(), rgb_container.copy(), cur_PSNR
     else:
-        return container.copy(), container.copy(), container.copy()
+        return container.copy(), container.copy(), container.copy(), cur_PSNR
 
 def ImageEdit(img, prompt, model_index):
     image, mask = img["image"], np.float32(img["mask"])
@@ -199,6 +200,8 @@ def innoguard_hiding(image_input, metadata_input, type_ECC, model, is_rgb_image 
         embed_status = f"Error: Message too long. Max characters allowed: {max_characters}. Current length: {len(metadata_input)}"
         return None, out_message, embed_status, download_path
     
+    avg_PSNR = 0
+    
     for i in range(0, num_child_images):
         if i < len(metadata_list):
             message = metadata_list[i]
@@ -207,8 +210,9 @@ def innoguard_hiding(image_input, metadata_input, type_ECC, model, is_rgb_image 
             
         out_message += message
     
-        current_image_np, _, _ = hiding(tiles_128[i], message, model, is_rgb_image)
+        current_image_np, _, _, cur_PSNR = hiding(tiles_128[i], message, model, is_rgb_image)
         list_container_numpy.append(current_image_np)
+        avg_PSNR += cur_PSNR
         
     parent_container = app_utils.combine_tiles_ordered(list_container_numpy, num_child_on_width_size, num_child_on_height_size)
     
@@ -218,6 +222,8 @@ def innoguard_hiding(image_input, metadata_input, type_ECC, model, is_rgb_image 
     download_path = "download_image.png"
     img = Image.fromarray(parent_container)
     img.save(download_path)
+    
+    print("Average PSNR: ", avg_PSNR / num_child_images)
     
     return parent_container, out_message, embed_status, download_path
 

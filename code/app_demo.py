@@ -85,6 +85,7 @@ with gr.Blocks(css=css, title="InnoGuard", theme=gr.themes.Soft()) as demo:
     is_rgb_image = gr.State(value = True)
     image_edit_value = gr.State(value = None)
     image_edited_1_value = gr.State(value = None)
+    PSNR_val = gr.State(value = 0)
 
     with gr.Tabs():
         app_demo_face_blur.render_tab(model)
@@ -146,7 +147,7 @@ with gr.Blocks(css=css, title="InnoGuard", theme=gr.themes.Soft()) as demo:
 
                 # Embed Watermark
                 hiding_button.click(
-                    backend.hiding, inputs=[image_input, bit_input, model, is_rgb_image], outputs=[image_watermark, image_edit, image_edit_value]
+                    backend.hiding, inputs=[image_input, bit_input, model, is_rgb_image], outputs=[image_watermark, image_edit, image_edit_value, PSNR_val]
                 )
                 rand_bit.click(
                     app_utils.rand, inputs=[], outputs=[bit_input]
