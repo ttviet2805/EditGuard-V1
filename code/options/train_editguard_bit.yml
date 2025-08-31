@@ -122,7 +122,7 @@ train:
   lr_G: !!float 1e-4
   beta1: 0.9
   beta2: 0.5
-  niter: 30000 # IMPORTANT: Config this before training
+  niter: 45000 # IMPORTANT: Config this before training
   warmup_iter: -1  # no warm up
 
   lr_scheme: MultiStepLR
